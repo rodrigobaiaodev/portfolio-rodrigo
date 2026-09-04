@@ -3,5 +3,13 @@
     "sobre": "About",
     "projetos": "Projects",
     "contato": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Rodrigo Baião",
+    "roles": ["Full Stack Developer", "Trader", "Former Uber Driver"],
+    "pitch": "From the driver's seat to the terminal — building software with the same discipline I use to manage risk.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch"
   }
 }
