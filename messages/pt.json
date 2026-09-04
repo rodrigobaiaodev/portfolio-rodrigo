@@ -124,8 +124,8 @@
       "liveLink": "https://flixpick.vercel.app"
     },
     "project3": {
-      "url": "convert-app.vercel.app",
-      "image": "/images/convert.png",
+      "url": "https://rodrigobaiaodev.github.io/convert-template-main/",
+      "image": "/images/convert-currency.png",
       "tag": "Finanças & API",
       "title": "Convert",
       "description": "Conversor de moedas com dados e cotações de câmbio atualizadas em tempo real através de integração com APIs financeiras.",

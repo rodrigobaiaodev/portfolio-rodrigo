@@ -12,7 +12,7 @@ export default function Projects() {
   const projectsData = [
     { key: 'project1', image: '/images/deazons.png' },
     { key: 'project2', image: '/images/flixpick.png' },
-    { key: 'project3', image: '/images/convert.png' },
+    { key: 'project3', image: '/images/convert-currency.png' },
   ];
 
   return (
