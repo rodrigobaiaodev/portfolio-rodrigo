@@ -92,7 +92,6 @@ export default function TerminalMockup() {
   const [charIndex, setCharIndex] = useState(0);
   const [displayedCode, setDisplayedCode] = useState<string[]>([]);
   
-  // Ref para controlar o timer de troca automática e reiniciá-lo ao ter clique manual
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const resetInterval = () => {
@@ -105,7 +104,6 @@ export default function TerminalMockup() {
     }, 7000);
   };
 
-  // Inicializa o temporizador automático
   useEffect(() => {
     resetInterval();
     return () => {
@@ -113,14 +111,12 @@ export default function TerminalMockup() {
     };
   }, []);
 
-  // Quando a aba muda (seja automática ou por clique), limpa e reinicia a digitação
   useEffect(() => {
     setLineIndex(0);
     setCharIndex(0);
     setDisplayedCode([]);
   }, [activeTab]);
 
-  // Efeito de digitação linha por linha
   useEffect(() => {
     const currentSnippet = CODE_SNIPPETS[activeTab].code;
     if (lineIndex >= currentSnippet.length) return;
@@ -147,19 +143,21 @@ export default function TerminalMockup() {
   const handleTabClick = (tech: string) => {
     if (tech === activeTab) return;
     setActiveTab(tech);
-    resetInterval(); // Reseta os 7 segundos ao clicar manualmente para evitar conflito
+    resetInterval();
   };
 
   const activeSnippet = CODE_SNIPPETS[activeTab];
 
   return (
-    <div className="w-full rounded-xl bg-[#030712] border border-slate-800/80 text-left overflow-hidden shadow-2xl font-mono text-xs sm:text-sm">
-      {/* Header do Terminal */}
-      <div className="flex items-center justify-between px-4 py-3 bg-slate-950/90 border-b border-slate-800/80 overflow-x-auto no-scrollbar">
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-          <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-          <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+    <div className="w-full rounded-2xl bg-black border border-white/10 text-left overflow-hidden shadow-[0_0_40px_-15px_rgba(255,255,255,0.05)] font-mono text-xs sm:text-sm">
+      
+      {/* Header do Terminal (Abas) */}
+      <div className="flex items-center justify-between px-4 py-3 bg-[#0a0a0a] border-b border-white/5 overflow-x-auto no-scrollbar">
+        {/* Botões estilo macOS (Versão Monocromática Premium) */}
+        <div className="flex items-center gap-2 shrink-0 opacity-40 hover:opacity-100 transition-opacity duration-300">
+          <span className="w-2.5 h-2.5 rounded-full bg-neutral-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-neutral-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-neutral-500" />
         </div>
 
         <div className="flex items-center gap-1 sm:gap-2 px-2">
@@ -167,10 +165,10 @@ export default function TerminalMockup() {
             <button
               key={tech}
               onClick={() => handleTabClick(tech)}
-              className={`px-2.5 py-1 rounded-md text-xs transition-all ${
+              className={`px-3 py-1.5 rounded-md text-[11px] sm:text-xs transition-all duration-300 ${
                 activeTab === tech
-                  ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.2)] font-semibold'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                  ? 'bg-white/10 text-white font-medium shadow-sm'
+                  : 'text-neutral-500 hover:text-neutral-300 hover:bg-white/5'
               }`}
             >
               {tech}
@@ -179,33 +177,33 @@ export default function TerminalMockup() {
         </div>
       </div>
 
-      {/* Subheader com arquivo atual e badge Live Code */}
-      <div className="flex items-center justify-between px-5 py-2.5 bg-slate-950/40 border-b border-slate-800/40 text-xs text-slate-400">
-        <span className="text-emerald-400 font-mono">{activeSnippet.file}</span>
-        <span className="inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/20">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+      {/* Subheader (Arquivo e Live Code) */}
+      <div className="flex items-center justify-between px-5 py-2.5 bg-black border-b border-white/5 text-xs text-neutral-400">
+        <span className="text-neutral-300">{activeSnippet.file}</span>
+        <span className="inline-flex items-center gap-1.5 text-neutral-300 text-[10px] uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded border border-white/10">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           Live Code
         </span>
       </div>
 
-      {/* Área do Código Animação */}
-      <div className="p-5 font-mono leading-relaxed text-slate-300 min-h-[190px] bg-[#030712]">
+      {/* Área de Código */}
+      <div className="p-5 font-mono leading-relaxed text-neutral-300 min-h-[190px] bg-black">
         {displayedCode.map((lineText, idx) => (
           <div key={idx} className="flex gap-4">
-            <span className="text-slate-600 select-none w-4 text-right">{idx + 1}</span>
-            <span className="text-slate-200 whitespace-pre">{lineText}</span>
+            <span className="text-neutral-700 select-none w-4 text-right">{idx + 1}</span>
+            <span className="text-neutral-200 whitespace-pre">{lineText}</span>
           </div>
         ))}
         <div className="flex items-center gap-2 mt-1">
-          <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block rounded-sm shadow-[0_0_8px_#10b981]" />
+          <span className="w-2 h-4 bg-white/80 animate-pulse inline-block rounded-sm" />
         </div>
       </div>
 
-      {/* Footer com Badges */}
-      <div className="flex items-center gap-2 px-5 py-3 bg-slate-950/90 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
-        <span className="text-emerald-400 font-bold">&gt;</span>
+      {/* Footer (Tags) */}
+      <div className="flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] border-t border-white/5 text-[11px] font-mono">
+        <span className="text-neutral-500 font-bold">&gt;</span>
         {activeSnippet.tags.map((tag) => (
-          <span key={tag} className="px-2.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300">
+          <span key={tag} className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-neutral-400">
             {tag}
           </span>
         ))}
