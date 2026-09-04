@@ -8,8 +8,12 @@ import Image from 'next/image';
 export default function Projects() {
   const t = useTranslations('projects');
 
-  // Mapeia as chaves cadastradas no pt.json / en.json
-  const projectKeys = ['project1', 'project2', 'project3'];
+  // Mapeia as chaves e vincula a imagem estática diretamente no código
+  const projectsData = [
+    { key: 'project1', image: '/images/deazons.png' },
+    { key: 'project2', image: '/images/flixpick.png' },
+    { key: 'project3', image: '/images/convert.png' },
+  ];
 
   return (
     <section id="projetos" className="relative py-24 bg-black text-white font-sans border-t border-white/5 overflow-hidden">
@@ -39,16 +43,17 @@ export default function Projects() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
             >
-<svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-</svg>              {t('githubLink')}
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg> 
+              {t('githubLink')}
             </a>
           </div>
         </div>
 
         {/* Grid de Cards de Projetos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectKeys.map((key, index) => (
+          {projectsData.map(({ key, image }, index) => (
             <motion.div 
               key={key}
               initial={{ opacity: 0, y: 20 }}
@@ -68,13 +73,13 @@ export default function Projects() {
                   <FolderGit2 className="w-3.5 h-3.5 shrink-0" />
                   <span className="truncate">{t(`items.${key}.url`)}</span>
                 </div>
-                <div className="w-6"></div> {/* Espaçador para alinhamento */}
+                <div className="w-6"></div>
               </div>
 
               {/* Print/Imagem do Projeto */}
               <div className="relative w-full aspect-video bg-zinc-900 overflow-hidden">
                 <Image 
-                  src={t(`items.${key}.image`)} 
+                  src={image} 
                   alt={t(`items.${key}.title`)}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
