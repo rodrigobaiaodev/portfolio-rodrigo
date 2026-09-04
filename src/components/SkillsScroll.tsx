@@ -127,8 +127,11 @@ export default function SkillsScroll() {
   });
 
   scrollYProgress.onChange((latest) => {
-    const step = Math.min(Math.floor(latest * SKILL_CONFIG.length), SKILL_CONFIG.length - 1);
-    setActiveStep(step);
+    // Apenas atualiza via scroll em telas maiores (lg) para evitar travamento no mobile
+    if (window.innerWidth >= 1024) {
+      const step = Math.min(Math.floor(latest * SKILL_CONFIG.length), SKILL_CONFIG.length - 1);
+      setActiveStep(step);
+    }
   });
 
   const steps = SKILL_CONFIG.map((item) => ({
@@ -141,11 +144,12 @@ export default function SkillsScroll() {
   const current = steps[activeStep];
 
   return (
-    <section id="skills" ref={containerRef} className="relative h-[350vh] bg-black text-white font-sans">
-      <div className="sticky top-0 h-screen flex flex-col justify-between px-4 sm:px-8 lg:px-12 py-8 overflow-hidden">
+    /* No mobile usa altura automática sem travar; no desktop usa h-[350vh] para o efeito de scroll */
+    <section id="skills" ref={containerRef} className="relative lg:h-[350vh] bg-black text-white font-sans py-12 lg:py-0">
+      <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-between px-4 sm:px-8 lg:px-12 py-8 overflow-hidden max-w-7xl w-full mx-auto">
         
         {/* Cabeçalho da Seção */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 max-w-7xl w-full mx-auto">
+        <div className="hidden lg:flex items-center justify-between border-b border-white/10 pb-4 w-full">
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
             <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
@@ -157,10 +161,20 @@ export default function SkillsScroll() {
           </span>
         </div>
 
+        {/* Cabeçalho mobile simplificado */}
+        <div className="lg:hidden flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              / {t('label')}
+            </span>
+          </div>
+        </div>
+
         {/* Conteúdo Principal */}
-        <div className="max-w-7xl w-full mx-auto my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* LADO ESQUERDO: Timeline */}
+          {/* LADO ESQUERDO: Timeline / Menu de Seleção */}
           <div className="lg:col-span-4 flex flex-col justify-center space-y-2">
             <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-wider mb-2">
               {t('specialtiesLabel')}
@@ -172,12 +186,11 @@ export default function SkillsScroll() {
                 <button
                   key={step.id}
                   onClick={() => {
-                    const targetScroll = (idx / steps.length) * (containerRef.current?.scrollHeight || 0);
-                    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                    setActiveStep(idx); // Apenas muda o estado instantaneamente sem dar scroll indesejado na tela
                   }}
                   className={`text-left p-3 rounded-xl transition-all duration-300 flex items-center justify-between border ${
                     isActive 
-                      ? 'bg-white/10 border-white/20 text-white translate-x-2 shadow-lg' 
+                      ? 'bg-white/10 border-white/20 text-white lg:translate-x-2 shadow-lg' 
                       : 'bg-transparent border-transparent text-neutral-500 hover:text-neutral-300'
                   }`}
                 >
@@ -237,7 +250,7 @@ export default function SkillsScroll() {
                     >
                       <div className="overflow-x-auto">
                         <div className="text-neutral-500 text-[10px] uppercase mb-2 flex items-center gap-2">
-                          <span className="text-emerald-400">⚡ active_file:</span> {current.title.toLowerCase().replace(/[^a-z0-0]/g, '-')}.ts
+                          <span className="text-emerald-400">⚡ active_file:</span> {current.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.ts
                         </div>
                         <pre className="text-neutral-300 leading-relaxed font-mono text-[11px] sm:text-xs">
                           <code>{current.codeSnippet}</code>
@@ -291,8 +304,8 @@ export default function SkillsScroll() {
 
         </div>
 
-        {/* Rodapé */}
-        <div className="flex items-center justify-between text-xs font-mono text-neutral-500 border-t border-white/10 pt-4 max-w-7xl w-full mx-auto">
+        {/* Rodapé (Apenas Desktop) */}
+        <div className="hidden lg:flex items-center justify-between text-xs font-mono text-neutral-500 border-t border-white/10 pt-4 w-full">
           <span>{t('scrollPrompt')}</span>
           <span>{(((activeStep + 1) / steps.length) * 100).toFixed(0)}%</span>
         </div>
