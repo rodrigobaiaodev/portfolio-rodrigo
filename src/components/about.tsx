@@ -180,7 +180,7 @@ export default function About() {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/60 flex items-center gap-2 text-xs text-zinc-300 font-mono hover:border-zinc-700 transition-colors">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400" /> React / Next.js
+                    <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400" /> React / Next.js & TypeScript
                   </div>
                   <div className="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/60 flex items-center gap-2 text-xs text-zinc-300 font-mono hover:border-zinc-700 transition-colors">
                     <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400" /> Node.js / REST
