@@ -127,5 +127,48 @@
       "link": "Official Curriculum",
       "description": "Intensive training covering the modern web development ecosystem. Building robust APIs and high-fidelity interfaces using the most in-demand technologies in the current market."
     }
+  },
+  "projects": {
+  "sectionLabel": "projects",
+  "title": "Projects that turn",
+  "titleHighlight": "ideas into solutions.",
+  "subtitle": "Some of the projects I've built. Scroll to see more.",
+  "githubLink": "See more projects on GitHub",
+  "viewProject": "View Project",
+  "items": {
+    "project1": {
+      "url": "deazons.com",
+      "image": "/images/deazons.png",
+      "tag": "Entertainment Portal",
+      "title": "Deazons",
+      "description": "A complete platform focused on movies, series, and up-to-date news from the entertainment world.",
+      "liveLink": "https://deazons.com"
+    },
+    "project2": {
+      "url": "flixpick.vercel.app",
+      "image": "/images/flixpick.png",
+      "tag": "Movie Recommendation",
+      "title": "Flixpick",
+      "description": "Stop scrolling. Start watching. An application designed to end indecision when choosing what to watch.",
+      "liveLink": "https://flixpick.vercel.app"
+    },
+    "project3": {
+      "url": "convert-app.vercel.app",
+      "image": "/images/convert.png",
+      "tag": "Finance & API",
+      "title": "Convert",
+      "description": "Currency converter featuring real-time exchange rates integrated with financial APIs.",
+      "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+    }
   }
+},
+"contact": {
+  "title": "Let's",
+  "titleHighlight": "Connect?",
+  "subtitle": "I'm open to professional opportunities, partnerships, and new projects. Get in touch!",
+  "copyEmail": "Copy Email",
+  "emailCopied": "Email Copied!",
+  "visitProfile": "Visit Profile",
+  "connect": "Connect"
+}
 }

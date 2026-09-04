@@ -127,5 +127,48 @@
       "link": "Grade Oficial",
       "description": "Formação intensiva cobrindo o ecossistema moderno de desenvolvimento web. Construção de APIs robustas e interfaces de alta fidelidade utilizando as tecnologias mais requisitadas pelo mercado atual."
     }
+  },
+  "projects": {
+  "sectionLabel": "projetos",
+  "title": "Projetos que transformam",
+  "titleHighlight": "ideias em soluções.",
+  "subtitle": "Alguns dos projetos que desenvolvi. Role para ver todos.",
+  "githubLink": "Ver mais projetos no GitHub",
+  "viewProject": "Ver Projeto",
+  "items": {
+    "project1": {
+      "url": "deazons.com",
+      "image": "/images/deazons.png",
+      "tag": "Portal de Entretenimento",
+      "title": "Deazons",
+      "description": "Plataforma completa focada em filmes, séries e notícias atualizadas do mundo do entretenimento.",
+      "liveLink": "https://deazons.com"
+    },
+    "project2": {
+      "url": "flixpick.vercel.app",
+      "image": "/images/flixpick.png",
+      "tag": "Recomendação de Filmes",
+      "title": "Flixpick",
+      "description": "Stop scrolling. Start watching. Uma aplicação desenhada para acabar com a indecisão na hora de escolher o que assistir.",
+      "liveLink": "https://flixpick.vercel.app"
+    },
+    "project3": {
+      "url": "convert-app.vercel.app",
+      "image": "/images/convert.png",
+      "tag": "Finanças & API",
+      "title": "Convert",
+      "description": "Conversor de moedas com dados e cotações de câmbio atualizadas em tempo real através de integração com APIs financeiras.",
+      "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+    }
   }
+},
+"contact": {
+  "title": "Vamos",
+  "titleHighlight": "Conversar?",
+  "subtitle": "Estou aberto a oportunidades profissionais, parcerias e novos projetos. Entre em contato!",
+  "copyEmail": "Copiar E-mail",
+  "emailCopied": "E-mail Copiado!",
+  "visitProfile": "Acessar Perfil",
+  "connect": "Conectar-se"
+}
 }

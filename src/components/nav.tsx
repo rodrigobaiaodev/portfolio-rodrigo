@@ -53,8 +53,8 @@ export default function Nav() {
     { id: 'skills', label: 'Skills', icon: Layers, href: '#skills' },
     { id: 'experiencia', label: 'Experiência', icon: Briefcase, href: '#experiencia' },
     { id: 'formacao', label: 'Formação', icon: GraduationCap, href: '#formacao' },
-    { id: 'certificados', label: 'Certificados', icon: Award, href: '#certificados' },
     { id: 'projetos', label: t('projetos'), icon: Code2, href: '#projetos' },
+    { id: 'certificados', label: 'Certificados', icon: Award, href: '#certificados' },
     { id: 'contato', label: t('contato'), icon: Send, href: '#contato' },
   ];
 
