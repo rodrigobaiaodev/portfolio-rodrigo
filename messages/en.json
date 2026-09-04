@@ -83,6 +83,7 @@
     }
   },
   "experience": {
+  "label": "PROFESSIONAL EXPERIENCE",
   "title": "Professional",
   "titleHighlight": "Experience",
   "subtitle": "Practical projects, web product management, and independent work.",
@@ -98,36 +99,6 @@
     "b4": "The need to customize and optimize these sites behind the scenes sparked my passion for technology and code, serving as the main trigger for my transition into Software Engineering."
   }
 },
-  "education": {
-    "title": "Academic",
-    "titleHighlight": "Background",
-    "subtitle": "My knowledge base, engineering foundation, and specializations.",
-    "estacio": {
-      "title": "Software Engineering",
-      "type": "(Bachelor's Degree)",
-      "date": "Jan 2024 - Dec 2027",
-      "hours": "3620 Hours",
-      "description": "Degree with a strong foundation in computing fundamentals, system architecture, and software development lifecycle, focused on solving complex problems.",
-      "showCurriculum": "View Curriculum",
-      "hideCurriculum": "Hide Curriculum",
-      "curriculumTitle": "Main Technological Subjects",
-      "disclaimer": "* Along with practical labs, agile methodologies (Scrum), software quality, and mathematical foundations.",
-      "subjects": {
-        "sub1": "Data Structures & Algorithms",
-        "sub2": "Databases & UML Modeling",
-        "sub3": "Cloud Computing & DevOps",
-        "sub4": "Cybersecurity & Secure Software",
-        "sub5": "System Architecture & Requirements",
-        "sub6": "AI for Developers"
-      }
-    },
-    "rocketseat": {
-      "title": "Full-Stack Journey",
-      "status": "In progress",
-      "link": "Official Curriculum",
-      "description": "Intensive training covering the modern web development ecosystem. Building robust APIs and high-fidelity interfaces using the most in-demand technologies in the current market."
-    }
-  },
   "projects": {
   "sectionLabel": "projects",
   "title": "Projects that turn",

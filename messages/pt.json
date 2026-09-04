@@ -82,7 +82,8 @@
       }
     }
   },
-  "experience": {
+ "experience": {
+  "label": "EXPERIÊNCIA PROFISSIONAL",
   "title": "Experiência",
   "titleHighlight": "Profissional",
   "subtitle": "Projetos práticos, gestão de produtos web e atuação autônoma.",
@@ -98,36 +99,6 @@
     "b4": "Foi justamente a necessidade de customizar e otimizar esses sites nos bastidores que despertou minha paixão por tecnologia e código, sendo o grande gatilho para a minha transição para a Engenharia de Software."
   }
 },
-  "education": {
-    "title": "Formação",
-    "titleHighlight": "Acadêmica",
-    "subtitle": "Minha base de conhecimento, engenharia e especializações.",
-    "estacio": {
-      "title": "Engenharia de Software",
-      "type": "(Bacharelado)",
-      "date": "Jan 2024 - Dez 2027",
-      "hours": "3620 Horas",
-      "description": "Graduação com forte embasamento nos fundamentos da computação, arquitetura de sistemas e ciclo de vida do desenvolvimento de software, focado na resolução de problemas complexos.",
-      "showCurriculum": "Ver Grade Curricular",
-      "hideCurriculum": "Ocultar Grade Curricular",
-      "curriculumTitle": "Principais Disciplinas Tecnológicas",
-      "disclaimer": "* Além de laboratórios práticos, metodologias ágeis (Scrum), qualidade de software e fundamentos matemáticos.",
-      "subjects": {
-        "sub1": "Estrutura de Dados & Algoritmos",
-        "sub2": "Banco de Dados & Modelagem UML",
-        "sub3": "Computação em Nuvem & DevOps",
-        "sub4": "Segurança Cibernética & Software Seguro",
-        "sub5": "Arquitetura de Sistemas & Requisitos",
-        "sub6": "Inteligência Artificial para Devs"
-      }
-    },
-    "rocketseat": {
-      "title": "Jornada Full-Stack",
-      "status": "Em andamento",
-      "link": "Grade Oficial",
-      "description": "Formação intensiva cobrindo o ecossistema moderno de desenvolvimento web. Construção de APIs robustas e interfaces de alta fidelidade utilizando as tecnologias mais requisitadas pelo mercado atual."
-    }
-  },
   "projects": {
   "sectionLabel": "projetos",
   "title": "Projetos que transformam",
