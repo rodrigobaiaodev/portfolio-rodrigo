@@ -5,11 +5,44 @@
     "contato": "Contato"
   },
   "hero": {
-    "greeting": "Olá, eu sou",
-    "name": "Rodrigo Baião",
-    "roles": ["Desenvolvedor Full Stack", "Trader", "Entusiasta de tecnologia"],
-    "pitch": "Construindo software com a mesma disciplina que uso pra gerenciar risco.",
-    "ctaProjects": "Ver projetos",
-    "ctaContact": "Falar comigo"
-  }
+  "greeting": "Engenharia de Software & Full Stack",
+  "name": "Rodrigo Baião",
+  "roles": [
+    "Desenvolvedor Full Stack",
+    "Engenheiro de Software",
+    "Especialista React & Node.js"
+  ],
+  "pitch": "Aplico rigor técnico, disciplina e arquitetura moderna para transformar problemas complexos em sistemas robustos, rápidos e prontos para escala.",
+  "ctaProjects": "Ver Portfólio",
+  "ctaContact": "Entrar em Contato"
+},
+
+  "about": {
+  "label": "/ SOBRE MIM",
+  "title": "Engenharia de software focada em código limpo, alta performance e",
+  "titleHighlight": "soluções escaláveis.",
+  "bio": "Desenvolvedor Full-Stack com foco no desenvolvimento de aplicações web completas, APIs robustas e interfaces de alta fidelidade. Combino a fundamentação acadêmica em Engenharia de Software com a prática intensiva na criação de sistemas modernos utilizando o ecossistema JavaScript/TypeScript (React, Next.js, Node.js), bancos de dados relacionais e containerização.",
+  "metrics": {
+    "stat1": "15+",
+    "label1": "Projetos e Repositórios",
+    "stat2": "Full-Stack",
+    "label2": "Next.js, Node & PostgreSQL",
+    "stat3": "6º Sem.",
+    "label3": "Engenharia de Software"
+  },
+  "card": {
+    "status": "Disponível para Oportunidades",
+    "role": "Desenvolvedor Full Stack",
+    "location": "Salvador, BA",
+    "stackTitle": "Stack Principal"
+  },
+  "stackLabel": "TECNOLOGIAS & FERRAMENTAS",
+  "journey": [
+    { "year": "2021", "label": "Primeiros projetos Web & fundamentos de programação" },
+    { "year": "2023", "label": "Início da Graduação em Engenharia de Software" },
+    { "year": "2025", "label": "Especialização Full-Stack & Projetos de Alta Complexidade" },
+    { "year": "2026", "label": "Pronto para gerar impacto em times de tecnologia" }
+  ]
+}
+  
 }

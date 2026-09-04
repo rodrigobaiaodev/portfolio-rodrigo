@@ -5,11 +5,43 @@
     "contato": "Contact"
   },
   "hero": {
-    "greeting": "Hi, I'm",
-    "name": "Rodrigo Baião",
-    "roles": ["Full Stack Developer", "Trader", "Tech enthusiast"],
-    "pitch": "Building software with the same discipline I use to manage risk.",
-    "ctaProjects": "View projects",
-    "ctaContact": "Get in touch"
-  }
+  "greeting": "Software Engineering & Full Stack",
+  "name": "Rodrigo Baião",
+  "roles": [
+    "Full Stack Developer",
+    "Software Engineer",
+    "React & Node.js Specialist"
+  ],
+  "pitch": "Applying technical rigor, discipline, and modern architecture to turn complex challenges into robust, fast, and scalable systems.",
+  "ctaProjects": "View Portfolio",
+  "ctaContact": "Contact Me"
+},
+
+ "about": {
+  "label": "/ ABOUT ME",
+  "title": "Software engineering focused on clean code, high performance, and",
+  "titleHighlight": "scalable solutions.",
+  "bio": "Full-Stack Developer focused on building end-to-end web applications, robust APIs, and high-fidelity user interfaces. I combine my academic foundation in Software Engineering with hands-on experience building modern systems using the JavaScript/TypeScript ecosystem (React, Next.js, Node.js), relational databases, and containerization.",
+  "metrics": {
+    "stat1": "15+",
+    "label1": "Projects & Repositories",
+    "stat2": "Full-Stack",
+    "label2": "Next.js, Node & PostgreSQL",
+    "stat3": "6th Sem.",
+    "label3": "Software Engineering"
+  },
+  "card": {
+    "status": "Available for Opportunities",
+    "role": "Full Stack Developer",
+    "location": "Salvador, BA, Brazil",
+    "stackTitle": "Core Tech Stack"
+  },
+  "stackLabel": "TECHNOLOGIES & TOOLS",
+  "journey": [
+    { "year": "2021", "label": "First web projects & core programming fundamentals" },
+    { "year": "2023", "label": "Started B.S. in Software Engineering" },
+    { "year": "2025", "label": "Full-Stack specialization & high-complexity projects" },
+    { "year": "2026", "label": "Ready to drive impact in tech engineering teams" }
+  ]
+}
 }
