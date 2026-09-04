@@ -132,6 +132,26 @@
       "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
     }
   }
+},"certificates": {
+  "badge": "Credentials & Achievements",
+  "title": "Professional Certificates",
+  "subtitle": "Specializations and continuous training in modern market technologies.",
+  "issuedBy": "Issued by",
+  "viewCredential": "Show credential",
+  "items": {
+    "htmlCss": {
+      "title": "HTML and CSS",
+      "date": "Aug 2026"
+    },
+    "gitGithub": {
+      "title": "Git and GitHub",
+      "date": "Feb 2026"
+    },
+    "logic": {
+      "title": "Programming Logic",
+      "date": "Feb 2026"
+    }
+  }
 },
 "contact": {
   "title": "Let's",
