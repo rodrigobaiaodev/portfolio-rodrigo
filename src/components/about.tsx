@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { 
   Code2, 
   CheckCircle2, 
@@ -116,7 +117,7 @@ export default function About() {
 
           </div>
 
-          {/* COLUNA DIREITA: Card Interativo de Desenvolvedor (5 Colunas) */}
+          {/* COLUNA DIREITA: Card Interativo com Foto de Perfil (5 Colunas) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -129,14 +130,17 @@ export default function About() {
             
             <div className="relative rounded-2xl bg-zinc-950/90 border border-zinc-800/80 p-6 shadow-2xl backdrop-blur-xl">
               
-              {/* Cabeçalho do Card Estilo Janela de IDE */}
+              {/* Cabeçalho do Card Estilo macOS Dinâmico */}
               <div className="flex items-center justify-between pb-4 mb-5 border-b border-zinc-900">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-zinc-700/80" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-700/80" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-700/80" />
+                  <div className="w-3 h-3 rounded-full bg-rose-500/80 border border-rose-600 shadow-[0_0_8px_rgba(244,63,94,0.4)] transition-transform group-hover:scale-105" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/80 border border-amber-600 shadow-[0_0_8px_rgba(245,158,11,0.4)] transition-transform group-hover:scale-105" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-600 shadow-[0_0_8px_rgba(16,185,129,0.4)] transition-transform group-hover:scale-105" />
                 </div>
-                <span className="font-mono text-xs text-zinc-500">developer_profile.ts</span>
+                <span className="font-mono text-xs text-zinc-500 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  developer_profile.ts
+                </span>
               </div>
 
               {/* Status Badge Pulsante */}
@@ -148,16 +152,24 @@ export default function About() {
                 {t('card.status')}
               </div>
 
-              {/* Detalhes do Perfil */}
-              <div className="space-y-4 mb-6">
-                <div>
-                  <h3 className="text-xl font-bold text-white">Rodrigo Baião</h3>
-                  <p className="text-sm font-mono text-zinc-400">{t('card.role')}</p>
+              {/* Detalhes do Perfil com Foto Maior e Estilizada */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6 text-center sm:text-left">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0 group/img">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover/img:opacity-100 transition-opacity" />
+                  <Image 
+                    src="/avatar.png" 
+                    alt="Rodrigo Baião" 
+                    fill 
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-500"
+                  />
                 </div>
-
-                <div className="flex items-center gap-2 text-xs text-zinc-500 font-mono">
-                  <MapPin className="w-4 h-4 text-zinc-600" />
-                  <span>{t('card.location')}</span>
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-xl font-bold text-white tracking-tight">Rodrigo Baião</h3>
+                  <p className="text-sm font-mono text-emerald-400/90 font-medium mt-0.5">{t('card.role')}</p>
+                  <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs text-zinc-500 font-mono mt-2">
+                    <MapPin className="w-3.5 h-3.5 text-zinc-500" />
+                    <span>{t('card.location')}</span>
+                  </div>
                 </div>
               </div>
 
