@@ -83,89 +83,94 @@
     }
   },
   "experience": {
-  "label": "PROFESSIONAL EXPERIENCE",
-  "title": "Professional",
-  "titleHighlight": "Experience",
-  "subtitle": "Practical projects, web product management, and independent work.",
-  "role": "Digital Entrepreneur & Autonomous Web Developer",
-  "company": "Baron's Capital Media",
-  "date": "Jul 2022 - Present",
-  "location": "Remote",
-  "description": "Autonomous work in the development, management, and monetization of web projects (Traffic Arbitrage and Google AdSense), combining business acumen with code.",
-  "bullets": {
-    "b1": "Building and structuring websites and landing pages focused on high conversion and performance.",
-    "b2": "Traffic management, SEO, and metrics analysis (Google Analytics) to optimize campaigns and profitability.",
-    "b3": "Managing basic web infrastructure (domains, hosting, and CMS configurations).",
-    "b4": "The need to customize and optimize these sites behind the scenes sparked my passion for technology and code, serving as the main trigger for my transition into Software Engineering."
-  }
-},
+    "label": "PROFESSIONAL EXPERIENCE",
+    "title": "Professional",
+    "titleHighlight": "Experience",
+    "subtitle": "Practical projects, web product management, and independent work.",
+    "role": "Digital Entrepreneur & Autonomous Web Developer",
+    "company": "Baron's Capital Media",
+    "date": "Jul 2022 - Present",
+    "location": "Remote",
+    "description": "Autonomous work in the development, management, and monetization of web projects (Traffic Arbitrage and Google AdSense), combining business acumen with code.",
+    "bullets": {
+      "b1": "Building and structuring websites and landing pages focused on high conversion and performance.",
+      "b2": "Traffic management, SEO, and metrics analysis (Google Analytics) to optimize campaigns and profitability.",
+      "b3": "Managing basic web infrastructure (domains, hosting, and CMS configurations).",
+      "b4": "The need to customize and optimize these sites behind the scenes sparked my passion for technology and code, serving as the main trigger for my transition into Software Engineering."
+    }
+  },
   "projects": {
-  "sectionLabel": "projects",
-  "title": "Projects that turn",
-  "titleHighlight": "ideas into solutions.",
-  "subtitle": "Some of the projects I've built. Scroll to see more.",
-  "githubLink": "See more projects on GitHub",
-  "viewProject": "View Project",
-  "items": {
-    "project1": {
-      "url": "deazons.com",
-      "image": "/images/deazons.png",
-      "tag": "Entertainment Portal",
-      "title": "Deazons",
-      "description": "A complete platform focused on movies, series, and up-to-date news from the entertainment world.",
-      "liveLink": "https://deazons.com"
-    },
-    "project2": {
-      "url": "flixpick.vercel.app",
-      "image": "/images/flixpick.png",
-      "tag": "Movie Recommendation",
-      "title": "Flixpick",
-      "description": "Stop scrolling. Start watching. An application designed to end indecision when choosing what to watch.",
-      "liveLink": "https://flixpick.vercel.app"
-    },
-    "project3": {
-      "url": "https://rodrigobaiaodev.github.io/convert-template-main/",
-      "image": "/images/convert-currency.png",
-      "tag": "Finance & API",
-      "title": "Convert",
-      "description": "Currency converter featuring real-time exchange rates integrated with financial APIs.",
-      "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+    "sectionLabel": "projects",
+    "title": "Projects that turn",
+    "titleHighlight": "ideas into solutions.",
+    "subtitle": "Some of the projects I've built. Scroll to see more.",
+    "githubLink": "See more projects on GitHub",
+    "viewProject": "View Project",
+    "clickDetails": "Click to see details +",
+    "technologiesLabel": "Technologies",
+    "viewGithub": "View on GitHub",
+    "viewDemo": "View Online Demo",
+    "items": {
+      "project1": {
+        "url": "deazons.com",
+        "image": "/images/deazons.png",
+        "tag": "Entertainment Portal",
+        "title": "Deazons",
+        "description": "A complete platform focused on movies, series, and up-to-date news from the entertainment world.",
+        "liveLink": "https://deazons.com"
+      },
+      "project2": {
+        "url": "flixpick.vercel.app",
+        "image": "/images/flixpick.png",
+        "tag": "Movie Recommendation",
+        "title": "Flixpick",
+        "description": "Stop scrolling. Start watching. An application designed to end indecision when choosing what to watch.",
+        "liveLink": "https://flixpick.vercel.app"
+      },
+      "project3": {
+        "url": "rodrigobaiaodev.github.io/convert-template-main",
+        "image": "/images/convert-currency.png",
+        "tag": "Finance & API",
+        "title": "Convert",
+        "description": "Currency converter featuring real-time exchange rates integrated with financial APIs.",
+        "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+      }
     }
-  }
-},"certificates": {
-  "badge": "Credentials & Achievements",
-  "title": "Professional Certificates",
-  "subtitle": "Specializations and continuous training in modern market technologies.",
-  "issuedBy": "Issued by",
-  "viewCredential": "Show credential",
-  "items": {
-    "htmlCss": {
-      "title": "HTML and CSS",
-      "date": "Aug 2026"
-    },
-    "gitGithub": {
-      "title": "Git and GitHub",
-      "date": "Feb 2026"
-    },
-    "logic": {
-      "title": "Programming Logic",
-      "date": "Feb 2026"
+  },
+  "certificates": {
+    "badge": "Credentials & Achievements",
+    "title": "Professional Certificates",
+    "subtitle": "Specializations and continuous training in modern market technologies.",
+    "issuedBy": "Issued by",
+    "viewCredential": "Show credential",
+    "items": {
+      "htmlCss": {
+        "title": "HTML and CSS",
+        "date": "Aug 2026"
+      },
+      "gitGithub": {
+        "title": "Git and GitHub",
+        "date": "Feb 2026"
+      },
+      "logic": {
+        "title": "Programming Logic",
+        "date": "Feb 2026"
+      }
     }
+  },
+  "contact": {
+    "title": "Let's",
+    "titleHighlight": "Connect?",
+    "subtitle": "I'm open to professional opportunities, partnerships, and new projects. Get in touch!",
+    "copyEmail": "Copy Email",
+    "emailCopied": "Email Copied!",
+    "visitProfile": "Visit Profile",
+    "connect": "Connect"
+  },
+  "footer": {
+    "role": "Full-Stack Developer & Software Engineering Student.",
+    "availability": "Available for new projects",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
   }
-},
-"contact": {
-  "title": "Let's",
-  "titleHighlight": "Connect?",
-  "subtitle": "I'm open to professional opportunities, partnerships, and new projects. Get in touch!",
-  "copyEmail": "Copy Email",
-  "emailCopied": "Email Copied!",
-  "visitProfile": "Visit Profile",
-  "connect": "Connect"
-},
-"footer": {
-  "role": "Full-Stack Developer & Software Engineering Student.",
-  "availability": "Available for new projects",
-  "rights": "All rights reserved.",
-  "backToTop": "Back to top"
-}
 }

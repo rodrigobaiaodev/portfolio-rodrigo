@@ -10,7 +10,6 @@ export default function Projects() {
   const t = useTranslations('projects');
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
-  // Mapeamento dos projetos com dados extras para o Modal (tecnologias, links de github, etc)
   const projectsData = [
     { 
       key: 'project1', 
@@ -108,7 +107,7 @@ export default function Projects() {
                   className="object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-xs font-mono text-emerald-400 bg-emerald-950/20 backdrop-blur-[2px]">
-                  Clique para ver detalhes +
+                  {t('clickDetails')}
                 </div>
               </div>
 
@@ -192,7 +191,7 @@ export default function Projects() {
 
                 {/* Tecnologias Utilizadas */}
                 <div>
-                  <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">Tecnologias</h4>
+                  <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">{t('technologiesLabel')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {activeProj.techs.map((tech) => (
                       <span key={tech} className="text-xs font-mono px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
@@ -211,7 +210,7 @@ export default function Projects() {
                     className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-zinc-900 hover:bg-zinc-800 text-white text-sm font-medium rounded-xl border border-zinc-800 transition-colors"
                   >
                     <FolderGit2 className="w-4 h-4 text-zinc-400" />
-                    Ver no GitHub
+                    {t('viewGithub')}
                   </a>
                   <a 
                     href={t(`items.${selectedProject}.liveLink`)}
@@ -219,7 +218,7 @@ export default function Projects() {
                     rel="noreferrer"
                     className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-xl transition-colors shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                   >
-                    Ver Demo Online
+                    {t('viewDemo')}
                     <ExternalLink className="w-4 h-4 text-white" />
                   </a>
                 </div>

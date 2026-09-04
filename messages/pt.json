@@ -82,90 +82,95 @@
       }
     }
   },
- "experience": {
-  "label": "EXPERIÊNCIA PROFISSIONAL",
-  "title": "Experiência",
-  "titleHighlight": "Profissional",
-  "subtitle": "Projetos práticos, gestão de produtos web e atuação autônoma.",
-  "role": "Empreendedor Digital & Desenvolvedor Web Autônomo",
-  "company": "Baron's Capital Media",
-  "date": "Jul 2022 - Presente",
-  "location": "Remoto",
-  "description": "Atuação autônoma no desenvolvimento, gestão e monetização de projetos web (Arbitragem de Tráfego e Google AdSense), unindo visão de negócios com código.",
-  "bullets": {
-    "b1": "Construção e estruturação de sites e landing pages focados em alta conversão e performance.",
-    "b2": "Gestão de tráfego, SEO e análise de métricas (Google Analytics) para otimização de campanhas e rentabilidade.",
-    "b3": "Gerenciamento de infraestrutura básica web (domínios, hospedagem e configurações de CMS).",
-    "b4": "Foi justamente a necessidade de customizar e otimizar esses sites nos bastidores que despertou minha paixão por tecnologia e código, sendo o grande gatilho para a minha transição para a Engenharia de Software."
-  }
-},
+  "experience": {
+    "label": "EXPERIÊNCIA PROFISSIONAL",
+    "title": "Experiência",
+    "titleHighlight": "Profissional",
+    "subtitle": "Projetos práticos, gestão de produtos web e atuação autônoma.",
+    "role": "Empreendedor Digital & Desenvolvedor Web Autônomo",
+    "company": "Baron's Capital Media",
+    "date": "Jul 2022 - Presente",
+    "location": "Remoto",
+    "description": "Atuação autônoma no desenvolvimento, gestão e monetização de projetos web (Arbitragem de Tráfego e Google AdSense), unindo visão de negócios com código.",
+    "bullets": {
+      "b1": "Construção e estruturação de sites e landing pages focados em alta conversão e performance.",
+      "b2": "Gestão de tráfego, SEO e análise de métricas (Google Analytics) para otimização de campanhas e rentabilidade.",
+      "b3": "Gerenciamento de infraestrutura básica web (domínios, hospedagem e configurações de CMS).",
+      "b4": "Foi justamente a necessidade de customizar e otimizar esses sites nos bastidores que despertou minha paixão por tecnologia e código, sendo o grande gatilho para a minha transição para a Engenharia de Software."
+    }
+  },
   "projects": {
-  "sectionLabel": "projetos",
-  "title": "Projetos que transformam",
-  "titleHighlight": "ideias em soluções.",
-  "subtitle": "Alguns dos projetos que desenvolvi. Role para ver todos.",
-  "githubLink": "Ver mais projetos no GitHub",
-  "viewProject": "Ver Projeto",
-  "items": {
-    "project1": {
-      "url": "deazons.com",
-      "image": "/images/deazons.png",
-      "tag": "Portal de Entretenimento",
-      "title": "Deazons",
-      "description": "Plataforma completa focada em filmes, séries e notícias atualizadas do mundo do entretenimento.",
-      "liveLink": "https://deazons.com"
-    },
-    "project2": {
-      "url": "flixpick.vercel.app",
-      "image": "/images/flixpick.png",
-      "tag": "Recomendação de Filmes",
-      "title": "Flixpick",
-      "description": "Stop scrolling. Start watching. Uma aplicação desenhada para acabar com a indecisão na hora de escolher o que assistir.",
-      "liveLink": "https://flixpick.vercel.app"
-    },
-    "project3": {
-      "url": "https://rodrigobaiaodev.github.io/convert-template-main/",
-      "image": "/images/convert-currency.png",
-      "tag": "Finanças & API",
-      "title": "Convert",
-      "description": "Conversor de moedas com dados e cotações de câmbio atualizadas em tempo real através de integração com APIs financeiras.",
-      "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+    "sectionLabel": "projetos",
+    "title": "Projetos que transformam",
+    "titleHighlight": "ideias em soluções.",
+    "subtitle": "Alguns dos projetos que desenvolvi. Role para ver todos.",
+    "githubLink": "Ver mais projetos no GitHub",
+    "viewProject": "Ver Projeto",
+    "clickDetails": "Clique para ver detalhes +",
+    "technologiesLabel": "Tecnologias",
+    "viewGithub": "Ver no GitHub",
+    "viewDemo": "Ver Demo Online",
+    "items": {
+      "project1": {
+        "url": "deazons.com",
+        "image": "/images/deazons.png",
+        "tag": "Portal de Entretenimento",
+        "title": "Deazons",
+        "description": "Plataforma completa focada em filmes, séries e notícias atualizadas do mundo do entretenimento.",
+        "liveLink": "https://deazons.com"
+      },
+      "project2": {
+        "url": "flixpick.vercel.app",
+        "image": "/images/flixpick.png",
+        "tag": "Recomendação de Filmes",
+        "title": "Flixpick",
+        "description": "Stop scrolling. Start watching. Uma aplicação desenhada para acabar com a indecisão na hora de escolher o que assistir.",
+        "liveLink": "https://flixpick.vercel.app"
+      },
+      "project3": {
+        "url": "rodrigobaiaodev.github.io/convert-template-main",
+        "image": "/images/convert-currency.png",
+        "tag": "Finanças & API",
+        "title": "Convert",
+        "description": "Conversor de moedas com dados e cotações de câmbio atualizadas em tempo real através de integração com APIs financeiras.",
+        "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+      }
     }
-  }
-},"certificates": {
-  "badge": "Credenciais & Conquistas",
-  "title": "Certificados Profissionais",
-  "subtitle": "Especializações e formações contínuas em tecnologias modernas de mercado.",
-  "issuedBy": "Emitido por",
-  "viewCredential": "Exibir credencial",
-  "items": {
-    "htmlCss": {
-      "title": "HTML e CSS",
-      "date": "Ago de 2026"
-    },
-    "gitGithub": {
-      "title": "Git e GitHub",
-      "date": "Fev de 2026"
-    },
-    "logic": {
-      "title": "Lógica de Programação",
-      "date": "Fev de 2026"
+  },
+  "certificates": {
+    "badge": "Credenciais & Conquistas",
+    "title": "Certificados Profissionais",
+    "subtitle": "Especializações e formações contínuas em tecnologias modernas de mercado.",
+    "issuedBy": "Emitido por",
+    "viewCredential": "Exibir credencial",
+    "items": {
+      "htmlCss": {
+        "title": "HTML e CSS",
+        "date": "Ago de 2026"
+      },
+      "gitGithub": {
+        "title": "Git e GitHub",
+        "date": "Fev de 2026"
+      },
+      "logic": {
+        "title": "Lógica de Programação",
+        "date": "Fev de 2026"
+      }
     }
+  },
+  "contact": {
+    "title": "Vamos",
+    "titleHighlight": "Conversar?",
+    "subtitle": "Estou aberto a oportunidades profissionais, parcerias e novos projetos. Entre em contato!",
+    "copyEmail": "Copiar E-mail",
+    "emailCopied": "E-mail Copiado!",
+    "visitProfile": "Acessar Perfil",
+    "connect": "Conectar-se"
+  },
+  "footer": {
+    "role": "Desenvolvedor Full-Stack & Estudante de Engenharia de Software.",
+    "availability": "Disponível para novos projetos",
+    "rights": "Todos os direitos reservados.",
+    "backToTop": "Voltar ao topo"
   }
-},
-"contact": {
-  "title": "Vamos",
-  "titleHighlight": "Conversar?",
-  "subtitle": "Estou aberto a oportunidades profissionais, parcerias e novos projetos. Entre em contato!",
-  "copyEmail": "Copiar E-mail",
-  "emailCopied": "E-mail Copiado!",
-  "visitProfile": "Acessar Perfil",
-  "connect": "Conectar-se"
-},
-"footer": {
-  "role": "Desenvolvedor Full-Stack & Estudante de Engenharia de Software.",
-  "availability": "Disponível para novos projetos",
-  "rights": "Todos os direitos reservados.",
-  "backToTop": "Voltar ao topo"
-}
 }
