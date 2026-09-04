@@ -58,11 +58,25 @@ export default function Nav() {
     { id: 'contato', label: t('contato'), icon: Send, href: '#contato' },
   ];
 
+  // Efeito para restaurar a posição do scroll após trocar o idioma
+  useEffect(() => {
+    const savedSection = sessionStorage.getItem('scroll_section');
+    if (savedSection) {
+      // Dá um pequeno delay para garantir que o DOM renderizou completo no novo idioma
+      setTimeout(() => {
+        const element = document.getElementById(savedSection);
+        if (element) {
+          element.scrollIntoView({ behavior: 'instant' });
+        }
+        sessionStorage.removeItem('scroll_section');
+      }, 100);
+    }
+  }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Força a ativação do último item quando atinge o final da página
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         setActiveSection(navItems[navItems.length - 1].id);
         return;
@@ -95,6 +109,10 @@ export default function Nav() {
 
   const changeLanguage = (newLocale: string) => {
     if (newLocale === locale) return;
+    
+    // Salva a seção ativa atual antes de mudar de idioma
+    sessionStorage.setItem('scroll_section', activeSection);
+
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPath = segments.join('/');
@@ -125,7 +143,7 @@ export default function Nav() {
           </span>
         </a>
 
-        {/* NAVEGAÇÃO FLUTUANTE (Com rolagem horizontal suave no mobile) */}
+        {/* NAVEGAÇÃO FLUTUANTE */}
         <nav className="flex items-center gap-1 bg-zinc-950/90 p-1.5 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl overflow-x-auto max-w-[55vw] sm:max-w-none no-scrollbar">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -145,7 +163,6 @@ export default function Nav() {
                     isActive ? 'text-emerald-400' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
-                  {/* Pílula Deslizante de Ativo */}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavBackground"
@@ -156,7 +173,6 @@ export default function Nav() {
                   <Icon className="w-4 h-4 relative z-10" />
                 </a>
 
-                {/* Tooltip Tecnológico (Apenas em telas maiores para não bugar no mobile) */}
                 <AnimatePresence>
                   {hoveredTab === item.id && (
                     <motion.div
