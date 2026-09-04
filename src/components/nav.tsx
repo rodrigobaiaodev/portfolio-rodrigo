@@ -62,7 +62,6 @@ export default function Nav() {
   useEffect(() => {
     const savedSection = sessionStorage.getItem('scroll_section');
     if (savedSection) {
-      // Dá um pequeno delay para garantir que o DOM renderizou completo no novo idioma
       setTimeout(() => {
         const element = document.getElementById(savedSection);
         if (element) {
@@ -110,8 +109,12 @@ export default function Nav() {
   const changeLanguage = (newLocale: string) => {
     if (newLocale === locale) return;
     
-    // Salva a seção ativa atual antes de mudar de idioma
-    sessionStorage.setItem('scroll_section', activeSection);
+    // Só salva a seção se o usuário realmente rolou a página para baixo (fora do Hero)
+    if (window.scrollY > 150) {
+      sessionStorage.setItem('scroll_section', activeSection);
+    } else {
+      sessionStorage.removeItem('scroll_section');
+    }
 
     const segments = pathname.split('/');
     segments[1] = newLocale;
@@ -122,7 +125,7 @@ export default function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-3 sm:px-8 transition-all duration-300">
       <div 
-        className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2.5 rounded-2xl transition-all duration-300 border ${
+        className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6 py-3 rounded-2xl transition-all duration-300 border ${
           scrolled 
             ? 'bg-black/80 backdrop-blur-2xl border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' 
             : 'bg-black/40 backdrop-blur-md border-white/5'
@@ -133,18 +136,17 @@ export default function Nav() {
         <a 
           href="#hero" 
           onClick={(e) => handleScrollTo(e, '#hero')} 
-          className="flex items-center gap-2 shrink-0 group"
+          className="flex items-center shrink-0 group relative w-36 sm:w-52 h-9 sm:h-11"
         >
-          <div className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-emerald-400 group-hover:border-emerald-500/50 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all">
-            <Terminal className="w-4 h-4" />
-          </div>
-          <span className="font-mono text-xs sm:text-sm tracking-tight font-bold text-white group-hover:text-emerald-300 transition-colors">
-            Rodrigo<span className="hidden sm:inline"> Baião</span><span className="text-emerald-400 font-extrabold">.dev</span>
-          </span>
+          <img 
+            src="/logo.png" 
+            alt="Rodrigo Baião.dev"
+            className="w-full h-full object-contain object-left group-hover:opacity-90 transition-opacity"
+          />
         </a>
 
         {/* NAVEGAÇÃO FLUTUANTE */}
-        <nav className="flex items-center gap-1 bg-zinc-950/90 p-1.5 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl overflow-x-auto max-w-[55vw] sm:max-w-none no-scrollbar">
+        <nav className="flex items-center gap-1.5 bg-zinc-950/90 p-2 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl overflow-x-auto max-w-[55vw] sm:max-w-none no-scrollbar">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -159,18 +161,18 @@ export default function Nav() {
                 <a
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`relative p-2 sm:p-2.5 rounded-full transition-colors duration-200 flex items-center justify-center ${
-                    isActive ? 'text-emerald-400' : 'text-zinc-400 hover:text-white'
+                  className={`relative p-2.5 sm:p-3 rounded-full transition-colors duration-200 flex items-center justify-center ${
+                    isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavBackground"
-                      className="absolute inset-0 bg-emerald-950/60 border border-emerald-500/40 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      className="absolute inset-0 bg-zinc-800/90 border border-zinc-600/60 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.12)]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <Icon className="w-4 h-4 relative z-10" />
+                  <Icon className="w-4.5 h-4.5 relative z-10" />
                 </a>
 
                 <AnimatePresence>
@@ -192,30 +194,30 @@ export default function Nav() {
         </nav>
 
         {/* SELETOR DE IDIOMA */}
-        <div className="flex items-center bg-zinc-950/90 p-1 rounded-full border border-zinc-800/80 gap-1 shrink-0 backdrop-blur-md">
+        <div className="flex items-center bg-zinc-950/90 p-1.5 rounded-full border border-zinc-800/80 gap-1 shrink-0 backdrop-blur-md">
           <button
             onClick={() => changeLanguage('pt')}
             title="Português"
-            className={`px-2 py-1 rounded-full flex items-center gap-1 transition-all ${
+            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
               locale === 'pt'
                 ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
                 : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
             }`}
           >
             <BrasilFlag />
-            <span className="hidden sm:inline text-[10px] font-mono font-bold text-zinc-200">PT</span>
+            <span className="hidden sm:inline text-[11px] font-mono font-bold text-zinc-200">PT</span>
           </button>
           <button
             onClick={() => changeLanguage('en')}
             title="English"
-            className={`px-2 py-1 rounded-full flex items-center gap-1 transition-all ${
+            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
               locale === 'en'
                 ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
                 : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
             }`}
           >
             <USAFlag />
-            <span className="hidden sm:inline text-[10px] font-mono font-bold text-zinc-200">EN</span>
+            <span className="hidden sm:inline text-[11px] font-mono font-bold text-zinc-200">EN</span>
           </button>
         </div>
 
