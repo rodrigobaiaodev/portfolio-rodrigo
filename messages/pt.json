@@ -81,5 +81,51 @@
         "description": "Automação total de testes, linting, build e deploy automático a cada commit na branch principal com validações rigorosas."
       }
     }
+  },
+  "experience": {
+  "title": "Experiência",
+  "titleHighlight": "Profissional",
+  "subtitle": "Projetos práticos, gestão de produtos web e atuação autônoma.",
+  "role": "Empreendedor Digital & Desenvolvedor Web Autônomo",
+  "company": "Baron's Capital Media",
+  "date": "Jul 2022 - Presente",
+  "location": "Remoto",
+  "description": "Atuação autônoma no desenvolvimento, gestão e monetização de projetos web (Arbitragem de Tráfego e Google AdSense), unindo visão de negócios com código.",
+  "bullets": {
+    "b1": "Construção e estruturação de sites e landing pages focados em alta conversão e performance.",
+    "b2": "Gestão de tráfego, SEO e análise de métricas (Google Analytics) para otimização de campanhas e rentabilidade.",
+    "b3": "Gerenciamento de infraestrutura básica web (domínios, hospedagem e configurações de CMS).",
+    "b4": "Foi justamente a necessidade de customizar e otimizar esses sites nos bastidores que despertou minha paixão por tecnologia e código, sendo o grande gatilho para a minha transição para a Engenharia de Software."
+  }
+},
+  "education": {
+    "title": "Formação",
+    "titleHighlight": "Acadêmica",
+    "subtitle": "Minha base de conhecimento, engenharia e especializações.",
+    "estacio": {
+      "title": "Engenharia de Software",
+      "type": "(Bacharelado)",
+      "date": "Jan 2024 - Dez 2027",
+      "hours": "3620 Horas",
+      "description": "Graduação com forte embasamento nos fundamentos da computação, arquitetura de sistemas e ciclo de vida do desenvolvimento de software, focado na resolução de problemas complexos.",
+      "showCurriculum": "Ver Grade Curricular",
+      "hideCurriculum": "Ocultar Grade Curricular",
+      "curriculumTitle": "Principais Disciplinas Tecnológicas",
+      "disclaimer": "* Além de laboratórios práticos, metodologias ágeis (Scrum), qualidade de software e fundamentos matemáticos.",
+      "subjects": {
+        "sub1": "Estrutura de Dados & Algoritmos",
+        "sub2": "Banco de Dados & Modelagem UML",
+        "sub3": "Computação em Nuvem & DevOps",
+        "sub4": "Segurança Cibernética & Software Seguro",
+        "sub5": "Arquitetura de Sistemas & Requisitos",
+        "sub6": "Inteligência Artificial para Devs"
+      }
+    },
+    "rocketseat": {
+      "title": "Jornada Full-Stack",
+      "status": "Em andamento",
+      "link": "Grade Oficial",
+      "description": "Formação intensiva cobrindo o ecossistema moderno de desenvolvimento web. Construção de APIs robustas e interfaces de alta fidelidade utilizando as tecnologias mais requisitadas pelo mercado atual."
+    }
   }
 }
