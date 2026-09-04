@@ -161,5 +161,11 @@
   "emailCopied": "E-mail Copiado!",
   "visitProfile": "Acessar Perfil",
   "connect": "Conectar-se"
+},
+"footer": {
+  "role": "Desenvolvedor Full-Stack & Estudante de Engenharia de Software.",
+  "availability": "Disponível para novos projetos",
+  "rights": "Todos os direitos reservados.",
+  "backToTop": "Voltar ao topo"
 }
 }

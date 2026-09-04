@@ -161,5 +161,11 @@
   "emailCopied": "Email Copied!",
   "visitProfile": "Visit Profile",
   "connect": "Connect"
+},
+"footer": {
+  "role": "Full-Stack Developer & Software Engineering Student.",
+  "availability": "Available for new projects",
+  "rights": "All rights reserved.",
+  "backToTop": "Back to top"
 }
 }
