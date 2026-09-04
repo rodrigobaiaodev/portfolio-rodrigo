@@ -1,19 +1,38 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ExternalLink, FolderGit2 } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, FolderGit2, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export default function Projects() {
   const t = useTranslations('projects');
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
-  // Mapeia as chaves e vincula a imagem estática diretamente no código
+  // Mapeamento dos projetos com dados extras para o Modal (tecnologias, links de github, etc)
   const projectsData = [
-    { key: 'project1', image: '/images/deazons.png' },
-    { key: 'project2', image: '/images/flixpick.png' },
-    { key: 'project3', image: '/images/convert-currency.png' },
+    { 
+      key: 'project1', 
+      image: '/images/deazons.png',
+      github: 'https://github.com/rodrigobaiaodev/Deazons',
+      techs: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript']
+    },
+    { 
+      key: 'project2', 
+      image: '/images/flixpick.png',
+      github: 'https://github.com/rodrigobaiaodev/flixpick',
+      techs: ['React', 'API TMDB', 'Tailwind CSS']
+    },
+    { 
+      key: 'project3', 
+      image: '/images/convert-currency.png',
+      github: 'https://github.com/rodrigobaiaodev/convert-template-main',
+      techs: ['Next.js', 'API de Câmbio', 'Tailwind CSS']
+    },
   ];
+
+  const activeProj = projectsData.find(p => p.key === selectedProject);
 
   return (
     <section id="projetos" className="relative py-24 bg-black text-white font-sans border-t border-white/5 overflow-hidden">
@@ -76,15 +95,21 @@ export default function Projects() {
                 <div className="w-6"></div>
               </div>
 
-              {/* Print/Imagem do Projeto */}
-              <div className="relative w-full aspect-video bg-zinc-900 overflow-hidden">
+              {/* Print/Imagem do Projeto (Clicável para abrir o Modal) */}
+              <div 
+                onClick={() => setSelectedProject(key)}
+                className="relative w-full aspect-video bg-zinc-900 overflow-hidden cursor-pointer group/img"
+              >
                 <Image 
                   src={image} 
                   alt={t(`items.${key}.title`)}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-xs font-mono text-emerald-400 bg-emerald-950/20 backdrop-blur-[2px]">
+                  Clique para ver detalhes +
+                </div>
               </div>
 
               {/* Informações e Descrição */}
@@ -102,21 +127,107 @@ export default function Projects() {
                 </div>
                 
                 {/* Botão de Acesso */}
-                <a 
-                  href={t(`items.${key}.liveLink`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-zinc-900 hover:bg-zinc-800 text-white text-sm font-medium rounded-xl border border-zinc-800 transition-colors"
+                <button 
+                  onClick={() => setSelectedProject(key)}
+                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-zinc-900 hover:bg-zinc-800 text-white text-sm font-medium rounded-xl border border-zinc-800 transition-colors cursor-pointer"
                 >
                   {t('viewProject')}
                   <ExternalLink className="w-4 h-4 text-zinc-400" />
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
 
       </div>
+
+      {/* MODAL / POP-UP DE DETALHES */}
+      <AnimatePresence>
+        {selectedProject && activeProj && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              {/* Topo do Modal / Janela */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/80">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                </div>
+                <span className="text-xs font-mono text-zinc-400">{t(`items.${selectedProject}.url`)}</span>
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="p-1 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Corpo com Scroll */}
+              <div className="overflow-y-auto p-6 space-y-6">
+                {/* Imagem Ampliada */}
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-800">
+                  <Image 
+                    src={activeProj.image} 
+                    alt={t(`items.${selectedProject}.title`)}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+
+                {/* Textos */}
+                <div>
+                  <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full inline-block mb-3">
+                    {t(`items.${selectedProject}.tag`)}
+                  </span>
+                  <h3 className="text-2xl font-bold text-white mb-3">{t(`items.${selectedProject}.title`)}</h3>
+                  <p className="text-sm text-zinc-300 leading-relaxed">
+                    {t(`items.${selectedProject}.description`)}
+                  </p>
+                </div>
+
+                {/* Tecnologias Utilizadas */}
+                <div>
+                  <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">Tecnologias</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {activeProj.techs.map((tech) => (
+                      <span key={tech} className="text-xs font-mono px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botões de Ação no Rodapé do Modal */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-zinc-800">
+                  <a 
+                    href={activeProj.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-zinc-900 hover:bg-zinc-800 text-white text-sm font-medium rounded-xl border border-zinc-800 transition-colors"
+                  >
+                    <FolderGit2 className="w-4 h-4 text-zinc-400" />
+                    Ver no GitHub
+                  </a>
+                  <a 
+                    href={t(`items.${selectedProject}.liveLink`)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-xl transition-colors shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                  >
+                    Ver Demo Online
+                    <ExternalLink className="w-4 h-4 text-white" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
