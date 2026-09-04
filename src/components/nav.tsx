@@ -62,8 +62,14 @@ export default function Nav() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
+      // Força a ativação do último item quando atinge o final da página
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        setActiveSection(navItems[navItems.length - 1].id);
+        return;
+      }
+
       const sections = navItems.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + 250;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
@@ -76,7 +82,7 @@ export default function Nav() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navItems]);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
