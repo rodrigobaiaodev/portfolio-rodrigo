@@ -5,44 +5,81 @@
     "contato": "Contato"
   },
   "hero": {
-  "greeting": "Engenharia de Software & Full Stack",
-  "name": "Rodrigo Baião",
-  "roles": [
-    "Desenvolvedor Full Stack",
-    "Engenheiro de Software",
-    "Especialista React & Node.js"
-  ],
-  "pitch": "Aplico rigor técnico, disciplina e arquitetura moderna para transformar problemas complexos em sistemas robustos, rápidos e prontos para escala.",
-  "ctaProjects": "Ver Portfólio",
-  "ctaContact": "Entrar em Contato"
-},
-
+    "greeting": "Engenharia de Software & Full Stack",
+    "name": "Rodrigo Baião",
+    "roles": [
+      "Desenvolvedor Full Stack",
+      "Engenheiro de Software",
+      "Especialista React & Node.js"
+    ],
+    "pitch": "Aplico rigor técnico, disciplina e arquitetura moderna para transformar problemas complexos em sistemas robustos, rápidos e prontos para escala.",
+    "ctaProjects": "Ver Portfólio",
+    "ctaContact": "Entrar em Contato"
+  },
   "about": {
-  "label": "/ SOBRE MIM",
-  "title": "Engenharia de software focada em código limpo, alta performance e",
-  "titleHighlight": "soluções escaláveis.",
-  "bio": "Desenvolvedor Full-Stack com foco no desenvolvimento de aplicações web completas, APIs robustas e interfaces de alta fidelidade. Combino a fundamentação acadêmica em Engenharia de Software com a prática intensiva na criação de sistemas modernos utilizando o ecossistema JavaScript/TypeScript (React, Next.js, Node.js), bancos de dados relacionais e containerização.",
-  "metrics": {
-    "stat1": "15+",
-    "label1": "Projetos e Repositórios",
-    "stat2": "Full-Stack",
-    "label2": "Next.js, Node & PostgreSQL",
-    "stat3": "6º Sem.",
-    "label3": "Engenharia de Software"
+    "label": "/ SOBRE MIM",
+    "title": "Engenharia de software focada em código limpo, alta performance e",
+    "titleHighlight": "soluções escaláveis.",
+    "bio": "Desenvolvedor Full-Stack com foco no desenvolvimento de aplicações web completas, APIs robustas e interfaces de alta fidelidade. Combino a fundamentação acadêmica em Engenharia de Software com a prática intensiva na criação de sistemas modernos utilizando o ecossistema JavaScript/TypeScript (React, Next.js, Node.js), bancos de dados relacionais e containerização.",
+    "metrics": {
+      "stat1": "15+",
+      "label1": "Projetos e Repositórios",
+      "stat2": "Full-Stack",
+      "label2": "Next.js, Node & PostgreSQL",
+      "stat3": "6º Sem.",
+      "label3": "Engenharia de Software"
+    },
+    "card": {
+      "status": "Disponível para Oportunidades",
+      "role": "Desenvolvedor Full Stack",
+      "location": "Salvador, BA",
+      "stackTitle": "Stack Principal"
+    },
+    "stackLabel": "TECNOLOGIAS & FERRAMENTAS",
+    "journey": [
+      { "year": "2021", "label": "Primeiros projetos Web & fundamentos de programação" },
+      { "year": "2023", "label": "Início da Graduação em Engenharia de Software" },
+      { "year": "2025", "label": "Especialização Full-Stack & Projetos de Alta Complexidade" },
+      { "year": "2026", "label": "Pronto para gerar impacto em times de tecnologia" }
+    ]
   },
-  "card": {
-    "status": "Disponível para Oportunidades",
-    "role": "Desenvolvedor Full Stack",
-    "location": "Salvador, BA",
-    "stackTitle": "Stack Principal"
-  },
-  "stackLabel": "TECNOLOGIAS & FERRAMENTAS",
-  "journey": [
-    { "year": "2021", "label": "Primeiros projetos Web & fundamentos de programação" },
-    { "year": "2023", "label": "Início da Graduação em Engenharia de Software" },
-    { "year": "2025", "label": "Especialização Full-Stack & Projetos de Alta Complexidade" },
-    { "year": "2026", "label": "Pronto para gerar impacto em times de tecnologia" }
-  ]
-}
-  
+  "skills": {
+    "label": "Stack de Tecnologia & Processo",
+    "stagePrefix": "ETAPA",
+    "of": "DE",
+    "specialtiesLabel": "Especialidades",
+    "scrollPrompt": "Role a página para navegar pelas habilidades",
+    "steps": {
+      "step1": {
+        "title": "Ambiente de Desenvolvimento",
+        "subtitle": "Setup Moderno & Produtivo",
+        "description": "Configuração de ambiente de alta performance com Zsh, Neovim, VS Code e ferramentas de automação customizadas."
+      },
+      "step2": {
+        "title": "React, Next.js & TypeScript",
+        "subtitle": "Interfaces Fluidas & Escaláveis",
+        "description": "Desenvolvimento de aplicações web modernas focadas em SEO, acessibilidade, renderização híbrida (SSR/SSG) e animações de alta performance."
+      },
+      "step3": {
+        "title": "Node.js & APIs Robustas",
+        "subtitle": "Arquitetura de Microsserviços",
+        "description": "Construção de APIs RESTful e GraphQL escaláveis, com autenticação JWT/OAuth2, validação de schemas rigorosa e tratamento de erros centralizado."
+      },
+      "step4": {
+        "title": "PostgreSQL & ORMs",
+        "subtitle": "Modelagem & Otimização",
+        "description": "Modelagem relacional eficiente, queries otimizadas, indexação estratégica e integração com ORMs modernos como Prisma e Drizzle."
+      },
+      "step5": {
+        "title": "Docker & Microservices",
+        "subtitle": "Ambientes Padronizados",
+        "description": "Containerização completa da aplicação para garantir paridade exata entre os ambientes de desenvolvimento, homologação e produção."
+      },
+      "step6": {
+        "title": "Pipelines & Automação",
+        "subtitle": "Entrega Contínua sem Friction",
+        "description": "Automação total de testes, linting, build e deploy automático a cada commit na branch principal com validações rigorosas."
+      }
+    }
+  }
 }

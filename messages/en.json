@@ -5,43 +5,81 @@
     "contato": "Contact"
   },
   "hero": {
-  "greeting": "Software Engineering & Full Stack",
-  "name": "Rodrigo Baião",
-  "roles": [
-    "Full Stack Developer",
-    "Software Engineer",
-    "React & Node.js Specialist"
-  ],
-  "pitch": "Applying technical rigor, discipline, and modern architecture to turn complex challenges into robust, fast, and scalable systems.",
-  "ctaProjects": "View Portfolio",
-  "ctaContact": "Contact Me"
-},
-
- "about": {
-  "label": "/ ABOUT ME",
-  "title": "Software engineering focused on clean code, high performance, and",
-  "titleHighlight": "scalable solutions.",
-  "bio": "Full-Stack Developer focused on building end-to-end web applications, robust APIs, and high-fidelity user interfaces. I combine my academic foundation in Software Engineering with hands-on experience building modern systems using the JavaScript/TypeScript ecosystem (React, Next.js, Node.js), relational databases, and containerization.",
-  "metrics": {
-    "stat1": "15+",
-    "label1": "Projects & Repositories",
-    "stat2": "Full-Stack",
-    "label2": "Next.js, Node & PostgreSQL",
-    "stat3": "6th Sem.",
-    "label3": "Software Engineering"
+    "greeting": "Software Engineering & Full Stack",
+    "name": "Rodrigo Baião",
+    "roles": [
+      "Full Stack Developer",
+      "Software Engineer",
+      "React & Node.js Specialist"
+    ],
+    "pitch": "Applying technical rigor, discipline, and modern architecture to turn complex challenges into robust, fast, and scalable systems.",
+    "ctaProjects": "View Portfolio",
+    "ctaContact": "Contact Me"
   },
-  "card": {
-    "status": "Available for Opportunities",
-    "role": "Full Stack Developer",
-    "location": "Salvador, BA, Brazil",
-    "stackTitle": "Core Tech Stack"
+  "about": {
+    "label": "/ ABOUT ME",
+    "title": "Software engineering focused on clean code, high performance, and",
+    "titleHighlight": "scalable solutions.",
+    "bio": "Full-Stack Developer focused on building end-to-end web applications, robust APIs, and high-fidelity user interfaces. I combine my academic foundation in Software Engineering with hands-on experience building modern systems using the JavaScript/TypeScript ecosystem (React, Next.js, Node.js), relational databases, and containerization.",
+    "metrics": {
+      "stat1": "15+",
+      "label1": "Projects & Repositories",
+      "stat2": "Full-Stack",
+      "label2": "Next.js, Node & PostgreSQL",
+      "stat3": "6th Sem.",
+      "label3": "Software Engineering"
+    },
+    "card": {
+      "status": "Available for Opportunities",
+      "role": "Full Stack Developer",
+      "location": "Salvador, BA, Brazil",
+      "stackTitle": "Core Tech Stack"
+    },
+    "stackLabel": "TECHNOLOGIES & TOOLS",
+    "journey": [
+      { "year": "2021", "label": "First web projects & core programming fundamentals" },
+      { "year": "2023", "label": "Started B.S. in Software Engineering" },
+      { "year": "2025", "label": "Full-Stack specialization & high-complexity projects" },
+      { "year": "2026", "label": "Ready to drive impact in tech engineering teams" }
+    ]
   },
-  "stackLabel": "TECHNOLOGIES & TOOLS",
-  "journey": [
-    { "year": "2021", "label": "First web projects & core programming fundamentals" },
-    { "year": "2023", "label": "Started B.S. in Software Engineering" },
-    { "year": "2025", "label": "Full-Stack specialization & high-complexity projects" },
-    { "year": "2026", "label": "Ready to drive impact in tech engineering teams" }
-  ]
-}
+  "skills": {
+    "label": "Tech Stack & Process",
+    "stagePrefix": "STAGE",
+    "of": "OF",
+    "specialtiesLabel": "Specialties",
+    "scrollPrompt": "Scroll to explore the tech stack",
+    "steps": {
+      "step1": {
+        "title": "Development Environment",
+        "subtitle": "Modern & Productive Setup",
+        "description": "High-performance environment configuration with Zsh, Neovim, VS Code, and custom automation tools."
+      },
+      "step2": {
+        "title": "React, Next.js & TypeScript",
+        "subtitle": "Fluid & Scalable Interfaces",
+        "description": "Development of modern web applications focused on SEO, accessibility, hybrid rendering (SSR/SSG), and high-performance animations."
+      },
+      "step3": {
+        "title": "Node.js & Robust APIs",
+        "subtitle": "Microservices Architecture",
+        "description": "Building scalable RESTful and GraphQL APIs with JWT/OAuth2 authentication, strict schema validation, and centralized error handling."
+      },
+      "step4": {
+        "title": "PostgreSQL & ORMs",
+        "subtitle": "Modeling & Optimization",
+        "description": "Efficient relational modeling, optimized queries, strategic indexing, and integration with modern ORMs like Prisma and Drizzle."
+      },
+      "step5": {
+        "title": "Docker & Microservices",
+        "subtitle": "Standardized Environments",
+        "description": "Complete application containerization ensuring exact parity across development, staging, and production environments."
+      },
+      "step6": {
+        "title": "Pipelines & Automation",
+        "subtitle": "Frictionless Continuous Delivery",
+        "description": "Full automation of testing, linting, building, and automated deployment on every main branch commit with strict checks."
+      }
+    }
+  }
 }
