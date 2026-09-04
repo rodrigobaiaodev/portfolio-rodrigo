@@ -25,7 +25,8 @@ const jakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Rodrigo Baião | Desenvolvedor",
+  title: 'Rodrigo Baião | Dev Full-Stack',
+  description: 'Engenharia de software moderna, aplicações web escaláveis e de alta performance com React, Next.js, Node.js e TypeScript.',
 };
 
 export function generateStaticParams() {
