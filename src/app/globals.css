@@ -7,20 +7,34 @@
 
 @theme {
   --color-bg: #030712;
-  --color-bg-alt: #090d16;
-  --color-surface: #0f172a;
+  --color-surface: #0b0f17;
   --color-border: #1e293b;
-  --color-text: #f8fafc;
-  --color-text-muted: #94a3b8;
-  --color-accent: #f97316;
-  --color-accent-2: #f59e0b;
+  --color-emerald-tech: #10b981;
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
 }
 
-/* Ocultar barra de rolagem em navegadores (Windows/Chrome/Firefox/Edge) */
+/* Gradiente Prateado Metálico Cromo (Estilo AscendAPI / Vercel) */
+.text-metallic-silver {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 45%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-metallic-subtle {
+  background: linear-gradient(180deg, #F8FAFC 0%, #CBD5E1 50%, #64748B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow e Iluminação do Terminal */
+.glow-card-emerald {
+  box-shadow: 0 0 50px -15px rgba(16, 185, 129, 0.18);
+}
+
+/* Ocultar scrollbar */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -39,5 +53,9 @@
     background-color: #030712;
     color: #f8fafc;
     overflow-x: hidden;
+  }
+  ::selection {
+    background-color: #10b981;
+    color: #000000;
   }
 }

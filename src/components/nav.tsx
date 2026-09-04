@@ -13,11 +13,12 @@ import {
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Ícone SVG Bandeira do Brasil
 function BrasilFlag() {
   return (
-    <svg className="w-5 h-3.5 rounded-sm overflow-hidden" viewBox="0 0 640 480">
+    <svg className="w-4 h-3 rounded-sm overflow-hidden shrink-0" viewBox="0 0 640 480">
       <path fill="#009b3a" d="M0 0h640v480H0z"/>
       <path fill="#fedf00" d="M320 48L592 240 320 432 48 240z"/>
       <circle fill="#002776" cx="320" cy="240" r="110"/>
@@ -29,7 +30,7 @@ function BrasilFlag() {
 // Ícone SVG Bandeira dos EUA
 function USAFlag() {
   return (
-    <svg className="w-5 h-3.5 rounded-sm overflow-hidden" viewBox="0 0 640 480">
+    <svg className="w-4 h-3 rounded-sm overflow-hidden shrink-0" viewBox="0 0 640 480">
       <path fill="#bd3d44" d="M0 0h640v480H0z"/>
       <path stroke="#fff" strokeWidth="37" d="M0 55.5h640M0 129h640M0 203h640M0 277h640M0 351h640M0 424.5h640"/>
       <path fill="#192f5d" d="M0 0h256v258.5H0z"/>
@@ -45,6 +46,7 @@ export default function Nav() {
 
   const [activeSection, setActiveSection] = useState('about');
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
     { id: 'about', label: t('sobre'), icon: User, href: '#about' },
@@ -58,6 +60,8 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
       const sections = navItems.map((item) => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 200;
 
@@ -85,7 +89,6 @@ export default function Nav() {
 
   const changeLanguage = (newLocale: string) => {
     if (newLocale === locale) return;
-    // Substitui o prefixo de idioma da URL atual (/pt -> /en ou vice-versa)
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPath = segments.join('/');
@@ -93,25 +96,34 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#030712]/90 backdrop-blur-xl border-b border-white/5 py-3 px-4 sm:px-8">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4 sm:px-8 transition-all duration-300">
+      <div 
+        className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-4 px-5 py-2.5 rounded-2xl transition-all duration-300 border ${
+          scrolled 
+            ? 'bg-black/80 backdrop-blur-2xl border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' 
+            : 'bg-black/40 backdrop-blur-md border-white/5'
+        }`}
+      >
         
-        {/* LOGO */}
-        <a href="#hero" onClick={(e) => handleScrollTo(e, '#hero')} className="flex items-center gap-2 shrink-0 group">
-          <div className="p-1.5 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/10 border border-orange-500/30 text-orange-400 group-hover:scale-105 transition-all">
+        {/* LOGO - Visual Cyber/Prata + Esmeralda */}
+        <a 
+          href="#hero" 
+          onClick={(e) => handleScrollTo(e, '#hero')} 
+          className="flex items-center gap-2.5 shrink-0 group"
+        >
+          <div className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-emerald-400 group-hover:border-emerald-500/50 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all">
             <Terminal className="w-4 h-4" />
           </div>
-          <span className="font-mono text-sm sm:text-base tracking-tight font-bold text-slate-100">
-            Rodrigo Baião<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">.dev</span>
+          <span className="font-mono text-sm sm:text-base tracking-tight font-bold text-white group-hover:text-emerald-300 transition-colors">
+            Rodrigo Baião<span className="text-emerald-400 font-extrabold">.dev</span>
           </span>
         </a>
 
-        {/* NAVEGAÇÃO COM TOOLTIPS TRADUZIDOS */}
-        <nav className="flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-full border border-slate-800 shadow-2xl">
+        {/* NAVEGAÇÃO FLUTUANTE (Dock Style) */}
+        <nav className="flex items-center gap-1 bg-zinc-950/90 p-1.5 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
-            const isHovered = hoveredTab === item.id;
 
             return (
               <div 
@@ -123,48 +135,65 @@ export default function Nav() {
                 <a
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`p-2.5 rounded-full transition-all duration-300 relative flex items-center justify-center ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/40 shadow-[0_0_15px_rgba(249,115,22,0.3)]' 
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60'
+                  className={`relative p-2.5 rounded-full transition-colors duration-200 flex items-center justify-center ${
+                    isActive ? 'text-emerald-400' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  {/* Pílula Deslizante de Ativo (Framer Motion) */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavBackground"
+                      className="absolute inset-0 bg-emerald-950/60 border border-emerald-500/40 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <Icon className="w-4 h-4 relative z-10" />
                 </a>
 
-                {isHovered && (
-                  <div className="absolute top-12 z-50 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-[10px] font-mono font-semibold tracking-wider text-slate-200 shadow-2xl whitespace-nowrap pointer-events-none">
-                    {item.label}
-                  </div>
-                )}
+                {/* Tooltip Tecnológico */}
+                <AnimatePresence>
+                  {hoveredTab === item.id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-12 z-50 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] font-mono font-medium tracking-wide text-zinc-200 shadow-2xl whitespace-nowrap pointer-events-none"
+                    >
+                      {item.label}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
         </nav>
 
-        {/* SELETOR DE IDIOMA COM BANDEIRAS BR / USA */}
-        <div className="flex items-center bg-slate-900/90 p-1.5 rounded-full border border-slate-800 gap-1 shrink-0">
+        {/* SELETOR DE IDIOMA */}
+        <div className="flex items-center bg-zinc-950/90 p-1 rounded-full border border-zinc-800/80 gap-1 shrink-0 backdrop-blur-md">
           <button
             onClick={() => changeLanguage('pt')}
             title="Português"
-            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
+            className={`px-2.5 py-1.2 rounded-full flex items-center gap-1.5 transition-all ${
               locale === 'pt'
-                ? 'bg-gradient-to-r from-orange-500/30 to-amber-500/30 border border-orange-500/50 shadow-md scale-105'
-                : 'opacity-50 hover:opacity-100'
+                ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
+                : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
             }`}
           >
             <BrasilFlag />
+            <span className="text-[10px] font-mono font-bold text-zinc-200">PT</span>
           </button>
           <button
             onClick={() => changeLanguage('en')}
             title="English"
-            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
+            className={`px-2.5 py-1.2 rounded-full flex items-center gap-1.5 transition-all ${
               locale === 'en'
-                ? 'bg-gradient-to-r from-orange-500/30 to-amber-500/30 border border-orange-500/50 shadow-md scale-105'
-                : 'opacity-50 hover:opacity-100'
+                ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
+                : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
             }`}
           >
             <USAFlag />
+            <span className="text-[10px] font-mono font-bold text-zinc-200">EN</span>
           </button>
         </div>
 

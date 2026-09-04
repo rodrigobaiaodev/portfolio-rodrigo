@@ -1,172 +1,211 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export interface TechSnippet {
-  id: string;
-  label: string;
-  filename: string;
-  tags: string[];
-  code: string;
-}
-
-export const SNIPPETS: TechSnippet[] = [
-  {
-    id: 'typescript',
-    label: 'TypeScript',
-    filename: 'types.ts',
-    tags: ['Interfaces', 'Generics', 'Strict Types'],
-    code: `export interface UserProfile {\n  id: string;\n  name: string;\n  email: string;\n  role: 'admin' | 'developer';\n}\n\nexport type ApiResponse<T> = {\n  data: T;\n  status: number;\n};`
+const CODE_SNIPPETS: Record<string, { file: string; code: string[]; tags: string[] }> = {
+  TypeScript: {
+    file: 'types.ts',
+    code: [
+      'export interface UserProfile {',
+      '  id: string;',
+      '  name: string;',
+      '  role: "Full-Stack Developer";',
+      '  status: "Available for Opportunities";',
+      '}'
+    ],
+    tags: ['Interfaces', 'Generics', 'Strict Mode']
   },
-  {
-    id: 'node',
-    label: 'Node.js',
-    filename: 'server.ts',
-    tags: ['Express', 'REST API', 'Backend'],
-    code: `import express from 'express';\n\nconst app = express();\napp.use(express.json());\n\napp.get('/api/health', (req, res) => {\n  return res.json({ status: 'online', timestamp: new Date() });\n});\n\napp.listen(3333);`
+  'Node.js': {
+    file: 'server.ts',
+    code: [
+      'import express from "express";',
+      'const app = express();',
+      'app.get("/api/v1/health", (req, res) => {',
+      '  return res.status(200).json({ status: "ok" });',
+      '});'
+    ],
+    tags: ['REST API', 'Express', 'Middleware']
   },
-  {
-    id: 'react',
-    label: 'React',
-    filename: 'useDebounce.ts',
-    tags: ['Custom Hooks', 'React 19', 'State'],
-    code: `import { useState, useEffect } from 'react';\n\nexport function useDebounce<T>(value: T, delay = 300): T {\n  const [debounced, setDebounced] = useState<T>(value);\n\n  useEffect(() => {\n    const timer = setTimeout(() => setDebounced(value), delay);\n    return () => clearTimeout(timer);\n  }, [value, delay]);\n\n  return debounced;\n}`
+  React: {
+    file: 'Component.tsx',
+    code: [
+      'export function HeroSection() {',
+      '  const [active, setActive] = useState(true);',
+      '  return (',
+      '    <div className="text-metallic-silver">',
+      '      <h1>Rodrigo Baião</h1>',
+      '    </div>',
+      '  );',
+      '}'
+    ],
+    tags: ['Hooks', 'Tailwind CSS', 'JSX']
   },
-  {
-    id: 'next',
-    label: 'Next.js',
-    filename: 'page.tsx',
-    tags: ['App Router', 'Server Components', 'SSR'],
-    code: `import { Suspense } from 'react';\n\nexport default async function DashboardPage() {\n  const data = await fetch('https://api.example.com/stats');\n\n  return (\n    <main className="p-8">\n      <h1 className="text-2xl font-bold">Dashboard</h1>\n      <Suspense fallback={<p>Loading...</p>}>\n        {/* Content */}\n      </Suspense>\n    </main>\n  );\n}`
+  'Next.js': {
+    file: 'page.tsx',
+    code: [
+      'import { useTranslations } from "next-intl";',
+      'export default async function Page() {',
+      '  return <main className="bg-black text-white" />;',
+      '}'
+    ],
+    tags: ['App Router', 'Server Components', 'i18n']
   },
-  {
-    id: 'postgres',
-    label: 'PostgreSQL',
-    filename: 'schema.sql',
-    tags: ['Database', 'SQL', 'Relations'],
-    code: `CREATE TABLE users (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  email VARCHAR(255) UNIQUE NOT NULL,\n  created_at TIMESTAMPTZ DEFAULT NOW()\n);`
+  PostgreSQL: {
+    file: 'schema.sql',
+    code: [
+      'CREATE TABLE users (',
+      '  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),',
+      '  email VARCHAR(255) UNIQUE NOT NULL,',
+      '  created_at TIMESTAMPTZ DEFAULT NOW()',
+      ');'
+    ],
+    tags: ['Cloud', 'S3 Storage', 'AWS SDK']
   },
-  {
-    id: 'docker',
-    label: 'Docker',
-    filename: 'docker-compose.yml',
-    tags: ['Containers', 'DevOps', 'Services'],
-    code: `version: '3.8'\nservices:\n  app:\n    build: .\n    ports:\n      - "3000:3000"\n    environment:\n      - NODE_ENV=production`
+  Docker: {
+    file: 'Dockerfile',
+    code: [
+      'FROM node:20-alpine AS builder',
+      'WORKDIR /app',
+      'COPY package*.json ./',
+      'RUN npm ci',
+      'CMD ["npm", "start"]'
+    ],
+    tags: ['Containers', 'Multi-stage', 'Alpine']
   },
-  {
-    id: 'aws',
-    label: 'AWS',
-    filename: 's3.ts',
-    tags: ['Cloud', 'S3 Storage', 'AWS SDK'],
-    code: `import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';\n\nconst s3 = new S3Client({ region: 'us-east-1' });\n\nexport async function uploadFile(bucket: string, key: string, body: Buffer) {\n  const command = new PutObjectCommand({ Bucket: bucket, Key: key, Body: body });\n  return await s3.send(command);\n}`
+  AWS: {
+    file: 'aws-config.ts',
+    code: [
+      'import { S3Client } from "@aws-sdk/client-s3";',
+      'export class S3Service {',
+      '  private s3 = new S3Client({ region: "us-east-1" });',
+      '}'
+    ],
+    tags: ['S3', 'CloudFront', 'IAM']
   }
-];
+};
 
-export function TerminalMockup() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
-  const [isAutoTyping, setIsAutoTyping] = useState(true);
-  const currentSnippet = SNIPPETS[activeTab];
+const STACKS = Object.keys(CODE_SNIPPETS);
 
+export default function TerminalMockup() {
+  const [activeTab, setActiveTab] = useState('PostgreSQL');
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [displayedCode, setDisplayedCode] = useState<string[]>([]);
+  
+  // Ref para controlar o timer de troca automática e reiniciá-lo ao ter clique manual
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetInterval = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveTab((current) => {
+        const nextIdx = (STACKS.indexOf(current) + 1) % STACKS.length;
+        return STACKS[nextIdx];
+      });
+    }, 7000);
+  };
+
+  // Inicializa o temporizador automático
   useEffect(() => {
-    setDisplayedText('');
-    let index = 0;
-    const fullText = currentSnippet.code;
+    resetInterval();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
-    const timer = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayedText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 15);
-
-    return () => clearInterval(timer);
+  // Quando a aba muda (seja automática ou por clique), limpa e reinicia a digitação
+  useEffect(() => {
+    setLineIndex(0);
+    setCharIndex(0);
+    setDisplayedCode([]);
   }, [activeTab]);
 
+  // Efeito de digitação linha por linha
   useEffect(() => {
-    if (!isAutoTyping) return;
-    const interval = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % SNIPPETS.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isAutoTyping]);
+    const currentSnippet = CODE_SNIPPETS[activeTab].code;
+    if (lineIndex >= currentSnippet.length) return;
 
-  const handleTabClick = (index: number) => {
-    setIsAutoTyping(false);
-    setActiveTab(index);
+    const targetLine = currentSnippet[lineIndex];
+
+    const typingTimer = setTimeout(() => {
+      if (charIndex < targetLine.length) {
+        setDisplayedCode((prev) => {
+          const updated = [...prev];
+          updated[lineIndex] = targetLine.slice(0, charIndex + 1);
+          return updated;
+        });
+        setCharIndex((prev) => prev + 1);
+      } else {
+        setLineIndex((prev) => prev + 1);
+        setCharIndex(0);
+      }
+    }, 20);
+
+    return () => clearTimeout(typingTimer);
+  }, [lineIndex, charIndex, activeTab]);
+
+  const handleTabClick = (tech: string) => {
+    if (tech === activeTab) return;
+    setActiveTab(tech);
+    resetInterval(); // Reseta os 7 segundos ao clicar manualmente para evitar conflito
   };
 
-  const renderHighlightedCode = (text: string) => {
-    return text.split('\n').map((line, i) => (
-      <div key={i} className="table-row">
-        <span className="table-cell text-right pr-4 text-slate-600 select-none text-xs">{i + 1}</span>
-        <span className="table-cell">
-          {line.split(/('[^']*'|"[^"]*"|`[^`]*`|\b(?:import|export|function|const|let|var|return|if|try|catch|from|CREATE|TABLE|PRIMARY|KEY|DEFAULT|version|services|ports|environment|type|interface)\b)/g).map((part, j) => {
-            if (/^('[^']*'|"[^"]*"|`[^`]*`)$/.test(part)) {
-              return <span key={j} className="text-amber-300">{part}</span>;
-            }
-            if (/^(import|export|function|const|let|var|return|if|try|catch|from|CREATE|TABLE|PRIMARY|KEY|DEFAULT|version|services|ports|environment|type|interface)$/.test(part)) {
-              return <span key={j} className="text-orange-400 font-semibold">{part}</span>;
-            }
-            return <span key={j} className="text-slate-300">{part}</span>;
-          })}
-        </span>
-      </div>
-    ));
-  };
+  const activeSnippet = CODE_SNIPPETS[activeTab];
 
   return (
-    <div className="w-full rounded-2xl border border-slate-800 bg-[#090d16]/90 shadow-[0_0_50px_rgba(249,115,22,0.1)] backdrop-blur-xl overflow-hidden text-left font-mono">
-      
-      {/* Top Bar de Abas com Rolar Oculto */}
-      <div className="flex items-center justify-between border-b border-slate-800/80 bg-slate-900/80 px-4 py-2.5 gap-2 overflow-x-auto no-scrollbar">
-        <div className="flex items-center gap-1.5 shrink-0">
-          <div className="w-3 h-3 rounded-full bg-red-500/80" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+    <div className="w-full rounded-xl bg-[#030712] border border-slate-800/80 text-left overflow-hidden shadow-2xl font-mono text-xs sm:text-sm">
+      {/* Header do Terminal */}
+      <div className="flex items-center justify-between px-4 py-3 bg-slate-950/90 border-b border-slate-800/80 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+          <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+          <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
         </div>
 
-        <div className="flex items-center gap-1 shrink-0 overflow-x-auto no-scrollbar py-0.5">
-          {SNIPPETS.map((snippet, idx) => (
+        <div className="flex items-center gap-1 sm:gap-2 px-2">
+          {STACKS.map((tech) => (
             <button
-              key={snippet.id}
-              onClick={() => handleTabClick(idx)}
-              className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${
-                activeTab === idx
-                  ? 'bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/40 shadow-[0_0_10px_rgba(249,115,22,0.2)]'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+              key={tech}
+              onClick={() => handleTabClick(tech)}
+              className={`px-2.5 py-1 rounded-md text-xs transition-all ${
+                activeTab === tech
+                  ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.2)] font-semibold'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
               }`}
             >
-              {snippet.label}
+              {tech}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Sub Bar com Nome de Arquivo */}
-      <div className="flex items-center justify-between border-b border-slate-800/40 bg-[#060a12] px-4 py-1.5 text-xs text-slate-500">
-        <span className="font-medium text-slate-400">{currentSnippet.filename}</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-orange-400 font-semibold">
-          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+      {/* Subheader com arquivo atual e badge Live Code */}
+      <div className="flex items-center justify-between px-5 py-2.5 bg-slate-950/40 border-b border-slate-800/40 text-xs text-slate-400">
+        <span className="text-emerald-400 font-mono">{activeSnippet.file}</span>
+        <span className="inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Live Code
         </span>
       </div>
 
-      {/* Corpo com Código */}
-      <div className="p-4 overflow-x-auto text-xs sm:text-sm min-h-[200px] bg-[#060a12]/90 no-scrollbar">
-        <div className="table w-full">
-          {renderHighlightedCode(displayedText)}
+      {/* Área do Código Animação */}
+      <div className="p-5 font-mono leading-relaxed text-slate-300 min-h-[190px] bg-[#030712]">
+        {displayedCode.map((lineText, idx) => (
+          <div key={idx} className="flex gap-4">
+            <span className="text-slate-600 select-none w-4 text-right">{idx + 1}</span>
+            <span className="text-slate-200 whitespace-pre">{lineText}</span>
+          </div>
+        ))}
+        <div className="flex items-center gap-2 mt-1">
+          <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block rounded-sm shadow-[0_0_8px_#10b981]" />
         </div>
-        <span className="inline-block w-2 h-4 ml-1 bg-orange-400 animate-pulse align-middle" />
       </div>
 
-      {/* Footer Tags */}
-      <div className="flex items-center gap-2 border-t border-slate-800/40 bg-slate-900/60 px-4 py-2.5 text-xs text-slate-400 overflow-x-auto no-scrollbar">
-        <span className="text-orange-400 font-bold">&gt;</span>
-        {currentSnippet.tags.map((tag, i) => (
-          <span key={i} className="px-2.5 py-0.5 rounded bg-slate-800/70 text-slate-300 text-[11px] border border-slate-700/60 shrink-0 font-sans">
+      {/* Footer com Badges */}
+      <div className="flex items-center gap-2 px-5 py-3 bg-slate-950/90 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
+        <span className="text-emerald-400 font-bold">&gt;</span>
+        {activeSnippet.tags.map((tag) => (
+          <span key={tag} className="px-2.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300">
             {tag}
           </span>
         ))}
@@ -174,5 +213,3 @@ export function TerminalMockup() {
     </div>
   );
 }
-
-export default TerminalMockup;
