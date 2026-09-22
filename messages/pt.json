@@ -152,16 +152,6 @@
     "issuedBy": "Emitido por",
     "viewCredential": "Exibir credencial",
     "items": {
-      }
-    }
-  },
-  "certificates": {
-    "badge": "Credenciais & Conquistas",
-    "title": "Certificados Profissionais",
-    "subtitle": "Especializações e formações contínuas em tecnologias modernas de mercado.",
-    "issuedBy": "Emitido por",
-    "viewCredential": "Exibir credencial",
-    "items": {
       "htmlCss": {
         "title": "HTML e CSS",
         "date": "Ago de 2026"
