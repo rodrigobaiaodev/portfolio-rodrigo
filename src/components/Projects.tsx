@@ -29,6 +29,12 @@ export default function Projects() {
       github: 'https://github.com/rodrigobaiaodev/convert-template-main',
       techs: ['Next.js', 'API de Câmbio', 'Tailwind CSS']
     },
+    { 
+      key: 'project4', 
+      image: '/images/Refund.png',
+      github: 'https://github.com/rodrigobaiaodev/refund-project',
+      techs: ['JavaScript', 'HTML5', 'CSS3']
+    },
   ];
 
   const activeProj = projectsData.find(p => p.key === selectedProject);

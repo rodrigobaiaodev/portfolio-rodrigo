@@ -134,6 +134,24 @@
         "title": "Convert",
         "description": "Conversor de moedas com dados e cotações de câmbio atualizadas em tempo real através de integração com APIs financeiras.",
         "liveLink": "https://rodrigobaiaodev.github.io/convert-template-main/"
+      },
+      "project4": {
+        "url": "https://github.com/rodrigobaiaodev/refund-project",
+        "image": "/images/Refund.png",
+        "tag": "Solicitação de Reembolso",
+        "title": "Refund",
+        "description": "Sistema de solicitação e processamento de reembolsos.",
+        "liveLink": "https://github.com/rodrigobaiaodev/refund-project"
+      }
+    }
+  },
+  "certificates": {
+    "badge": "Credenciais & Conquistas",
+    "title": "Certificados Profissionais",
+    "subtitle": "Especializações e formações contínuas em tecnologias modernas de mercado.",
+    "issuedBy": "Emitido por",
+    "viewCredential": "Exibir credencial",
+    "items": {
       }
     }
   },
