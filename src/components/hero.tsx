@@ -54,27 +54,49 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    if (!roles || roles.length === 0) return;
-    const currentRole = roles[roleIndex % roles.length];
-    const typingSpeed = isDeleting ? 30 : 70;
+  if (!roles || roles.length === 0) return;
 
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
+  const currentRole = roles[roleIndex % roles.length];
+
+  let delay = 100;
+
+  // Quando terminou de escrever, espera antes de apagar
+  if (!isDeleting && text === currentRole) {
+    delay = 2500;
+  }
+
+  // Apagar é mais rápido que escrever
+  if (isDeleting) {
+    delay = 45;
+  }
+
+  const timeout = setTimeout(() => {
+    if (!isDeleting) {
+      // Ainda está escrevendo
+      if (text !== currentRole) {
         setText(currentRole.slice(0, text.length + 1));
-        if (text === currentRole) {
-          setTimeout(() => setIsDeleting(true), 2500);
-        }
-      } else {
-        setText(currentRole.slice(0, text.length - 1));
-        if (text === '') {
-          setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-        }
+      } 
+      // Terminou de escrever
+      else {
+        setIsDeleting(true);
       }
-    }, typingSpeed);
+    } 
+    
+    else {
+      // Ainda está apagando
+      if (text.length > 0) {
+        setText(text.slice(0, -1));
+      } 
+      // Terminou de apagar
+      else {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      }
+    }
+  }, delay);
 
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, roleIndex, roles]);
+  return () => clearTimeout(timeout);
+}, [text, isDeleting, roleIndex, roles]);
 
   return (
     <section 

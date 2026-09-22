@@ -8,9 +8,10 @@
     "greeting": "Software Engineering & Full Stack",
     "name": "Rodrigo Baião",
     "roles": [
-      "Full Stack Developer",
       "Software Engineer",
-      "React & Node.js Specialist"
+      "Full Stack Developer",
+      "React & Node.js Specialist",
+      "Next.js & TS Developer"
     ],
     "pitch": "Applying technical rigor, discipline, and modern architecture to turn complex challenges into robust, fast, and scalable systems.",
     "ctaProjects": "View Portfolio",
