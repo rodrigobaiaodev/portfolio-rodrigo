@@ -35,9 +35,9 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Centro: Indicador de Disponibilidade (Cinza Metálico / Neutro) */}
+        {/* Centro: Indicador de Disponibilidade */}
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-700/60 text-zinc-300 text-xs font-mono shadow-inner">
-          <span className="w-2 h-2 rounded-full bg-zinc-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span>{t('availability')}</span>
         </div>
 
