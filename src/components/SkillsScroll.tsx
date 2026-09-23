@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 const SKILL_CONFIG = [
@@ -126,7 +126,7 @@ export default function SkillsScroll() {
     offset: ['start start', 'end end']
   });
 
-  scrollYProgress.onChange((latest) => {
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     // Apenas atualiza via scroll em telas maiores (lg) para evitar travamento no mobile
     if (window.innerWidth >= 1024) {
       const step = Math.min(Math.floor(latest * SKILL_CONFIG.length), SKILL_CONFIG.length - 1);
