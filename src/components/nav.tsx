@@ -9,7 +9,9 @@ import {
   Award, 
   Code2, 
   Send,
-  Terminal
+  Terminal,
+  Menu,
+  X
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
@@ -47,6 +49,7 @@ export default function Nav() {
   const [activeSection, setActiveSection] = useState('about');
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: 'about', label: t('sobre'), icon: User, href: '#about' },
@@ -57,6 +60,8 @@ export default function Nav() {
     { id: 'certificados', label: 'Certificados', icon: Award, href: '#certificados' },
     { id: 'contato', label: t('contato'), icon: Send, href: '#contato' },
   ];
+
+  const activeItem = navItems.find((item) => item.id === activeSection) ?? navItems[0];
 
   // Efeito para restaurar a posição do scroll após trocar o idioma
   useEffect(() => {
@@ -75,6 +80,8 @@ export default function Nav() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      // Fecha o menu mobile se o usuário rolar a página (evita ficar aberto "flutuando" sobre o conteúdo)
+      setMobileMenuOpen(false);
 
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         setActiveSection(navItems[navItems.length - 1].id);
@@ -123,12 +130,16 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-3 sm:px-8 transition-all duration-300">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${
+        scrolled ? 'pt-0 px-0' : 'pt-3 px-3 sm:px-8'
+      }`}
+    >
       <div 
-        className={`w-full max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6 py-3 rounded-2xl transition-all duration-300 border ${
+        className={`relative w-full flex items-center justify-between transition-all duration-300 border ${
           scrolled 
-            ? 'bg-black/80 backdrop-blur-2xl border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' 
-            : 'bg-black/40 backdrop-blur-md border-white/5'
+            ? 'max-w-full rounded-none gap-1.5 sm:gap-3 px-3 sm:px-8 py-1.5 border-t-0 border-x-0 bg-black/80 backdrop-blur-2xl border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' 
+            : 'max-w-6xl mx-auto rounded-2xl gap-2 sm:gap-4 px-3 sm:px-6 py-3 bg-black/40 backdrop-blur-md border-white/5'
         }`}
       >
         
@@ -136,7 +147,9 @@ export default function Nav() {
         <a 
           href="#hero" 
           onClick={(e) => handleScrollTo(e, '#hero')} 
-          className="flex items-center shrink-0 group relative w-36 sm:w-52 h-9 sm:h-11"
+          className={`flex items-center shrink-0 group relative transition-all duration-300 ${
+            scrolled ? 'w-28 sm:w-40 h-7 sm:h-9' : 'w-36 sm:w-52 h-9 sm:h-11'
+          }`}
         >
           <img 
             src="/logo.png" 
@@ -145,8 +158,12 @@ export default function Nav() {
           />
         </a>
 
-        {/* NAVEGAÇÃO FLUTUANTE */}
-        <nav className="flex items-center gap-1.5 bg-zinc-950/90 p-2 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl overflow-x-auto max-w-[55vw] sm:max-w-none no-scrollbar">
+        {/* NAVEGAÇÃO — DESKTOP (todos os ícones, pill única) */}
+        <nav
+          className={`hidden sm:flex items-center gap-1.5 bg-zinc-950/90 rounded-full border border-zinc-800/80 shadow-inner backdrop-blur-xl transition-all duration-300 ${
+            scrolled ? 'p-1.5' : 'p-2'
+          }`}
+        >
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -161,7 +178,9 @@ export default function Nav() {
                 <a
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`relative p-2.5 sm:p-3 rounded-full transition-colors duration-200 flex items-center justify-center ${
+                  className={`relative rounded-full transition-all duration-300 flex items-center justify-center ${
+                    scrolled ? 'p-2 sm:p-2.5' : 'p-2.5 sm:p-3'
+                  } ${
                     isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -172,7 +191,7 @@ export default function Nav() {
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <Icon className="w-4.5 h-4.5 relative z-10" />
+                  <Icon className={`relative z-10 transition-all duration-300 ${scrolled ? 'w-4 h-4' : 'w-4.5 h-4.5'}`} />
                 </a>
 
                 <AnimatePresence>
@@ -193,12 +212,71 @@ export default function Nav() {
           })}
         </nav>
 
+        {/* NAVEGAÇÃO — MOBILE (mostra a seção ativa + botão que abre grid com todas) */}
+        <button
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          aria-expanded={mobileMenuOpen}
+          aria-label="Abrir menu de navegação"
+          className={`flex sm:hidden items-center gap-2 min-h-[44px] rounded-full bg-zinc-950/90 border border-zinc-800/80 shadow-inner text-zinc-200 transition-all duration-300 ${
+            scrolled ? 'px-3 py-1.5' : 'px-3.5 py-2'
+          }`}
+        >
+          <activeItem.icon className="w-4 h-4 shrink-0" />
+          <span className="text-[11px] font-mono font-semibold max-w-[22vw] truncate">
+            {activeItem.label}
+          </span>
+          {mobileMenuOpen ? (
+            <X className="w-4 h-4 opacity-60 shrink-0" />
+          ) : (
+            <Menu className="w-4 h-4 opacity-60 shrink-0" />
+          )}
+        </button>
+
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+              className="sm:hidden absolute left-3 right-3 top-full mt-2 grid grid-cols-4 gap-2 p-3 rounded-2xl bg-zinc-950/95 border border-zinc-800/80 backdrop-blur-xl shadow-2xl"
+            >
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={(e) => {
+                      handleScrollTo(e, item.href);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex flex-col items-center justify-center gap-1.5 min-h-[56px] rounded-xl py-2 text-[10px] font-mono text-center leading-tight transition-colors ${
+                      isActive ? 'bg-zinc-800 text-white' : 'text-zinc-400 active:bg-zinc-900'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {item.label}
+                  </a>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* SELETOR DE IDIOMA */}
-        <div className="flex items-center bg-zinc-950/90 p-1.5 rounded-full border border-zinc-800/80 gap-1 shrink-0 backdrop-blur-md">
+        <div
+          className={`flex items-center bg-zinc-950/90 rounded-full border border-zinc-800/80 gap-1 shrink-0 backdrop-blur-md transition-all duration-300 ${
+            scrolled ? 'p-1' : 'p-1.5'
+          }`}
+        >
           <button
             onClick={() => changeLanguage('pt')}
             title="Português"
-            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
+            className={`min-h-[40px] min-w-[40px] sm:min-h-0 sm:min-w-0 rounded-full flex items-center justify-center gap-1.5 transition-all ${
+              scrolled ? 'px-2 py-1' : 'px-2.5 py-1.5'
+            } ${
               locale === 'pt'
                 ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
                 : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
@@ -210,7 +288,9 @@ export default function Nav() {
           <button
             onClick={() => changeLanguage('en')}
             title="English"
-            className={`px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all ${
+            className={`min-h-[40px] min-w-[40px] sm:min-h-0 sm:min-w-0 rounded-full flex items-center justify-center gap-1.5 transition-all ${
+              scrolled ? 'px-2 py-1' : 'px-2.5 py-1.5'
+            } ${
               locale === 'en'
                 ? 'bg-zinc-800 border border-zinc-700 text-white shadow-[0_0_10px_rgba(255,255,255,0.08)] scale-105'
                 : 'opacity-40 hover:opacity-100 hover:bg-zinc-900'
